@@ -8,6 +8,12 @@
 
 import UIKit
 
+extension UIApplication {
+    var statusBarView: UIView {
+        return (value(forKey: "statusBar") as? UIView)!
+    }
+}
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -16,6 +22,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        // start managers
+        _ = DataManager.sharedInstance
+        _ = ConfigManager.sharedInstance
+        
+        // set status bar styling
+        //UIApplication.shared.setStatusBarStyle(UIStatusBarStyle.lightContent, animated: false)
+        UIApplication.shared.statusBarView.backgroundColor = HelperConsts.topBarBackgroundColor
+        
         return true
     }
 
