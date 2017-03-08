@@ -21,6 +21,10 @@
 		C8D3AE141E647CA600B34E56 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C8D3AE121E647CA600B34E56 /* Main.storyboard */; };
 		C8D3AE161E647CA600B34E56 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C8D3AE151E647CA600B34E56 /* Assets.xcassets */; };
 		C8D3AE191E647CA600B34E56 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C8D3AE171E647CA600B34E56 /* LaunchScreen.storyboard */; };
+		C8EF65BB1E6F0C0C00B5C8E2 /* SlaboRegular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C8EF65BA1E6F0C0C00B5C8E2 /* SlaboRegular.ttf */; };
+		C8EF65BD1E6F65F000B5C8E2 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EF65BC1E6F65F000B5C8E2 /* DetailViewController.swift */; };
+		C8EF65BF1E6F673B00B5C8E2 /* DetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EF65BE1E6F673B00B5C8E2 /* DetailTableViewController.swift */; };
+		C8EF65C11E6F67C800B5C8E2 /* DetailTableViewControllerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EF65C01E6F67C800B5C8E2 /* DetailTableViewControllerCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +44,10 @@
 		C8D3AE151E647CA600B34E56 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C8D3AE181E647CA600B34E56 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C8D3AE1A1E647CA600B34E56 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C8EF65BA1E6F0C0C00B5C8E2 /* SlaboRegular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = SlaboRegular.ttf; path = ../../../../../../../Desktop/SlaboRegular.ttf; sourceTree = "<group>"; };
+		C8EF65BC1E6F65F000B5C8E2 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		C8EF65BE1E6F673B00B5C8E2 /* DetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailTableViewController.swift; sourceTree = "<group>"; };
+		C8EF65C01E6F67C800B5C8E2 /* DetailTableViewControllerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailTableViewControllerCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +66,8 @@
 			children = (
 				C8B45D4A1E662411006FC962 /* MainViewController.swift */,
 				C8B45D4C1E662576006FC962 /* MainTableViewController.swift */,
+				C8EF65BC1E6F65F000B5C8E2 /* DetailViewController.swift */,
+				C8EF65BE1E6F673B00B5C8E2 /* DetailTableViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -94,6 +104,7 @@
 			isa = PBXGroup;
 			children = (
 				C8B45D4F1E6627ED006FC962 /* MainTableViewControllerCell.swift */,
+				C8EF65C01E6F67C800B5C8E2 /* DetailTableViewControllerCell.swift */,
 			);
 			name = TableViewControllerCells;
 			sourceTree = "<group>";
@@ -124,11 +135,20 @@
 				C83844AA1E647E2D00128033 /* Models */,
 				C83844AB1E647E5A00128033 /* Helpers */,
 				C8D3AE121E647CA600B34E56 /* Main.storyboard */,
+				C8EF65B91E6F09B500B5C8E2 /* Assets */,
+			);
+			path = "FHNW-WS6C-CoffeeApp";
+			sourceTree = "<group>";
+		};
+		C8EF65B91E6F09B500B5C8E2 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				C8EF65BA1E6F0C0C00B5C8E2 /* SlaboRegular.ttf */,
 				C8D3AE151E647CA600B34E56 /* Assets.xcassets */,
 				C8D3AE171E647CA600B34E56 /* LaunchScreen.storyboard */,
 				C8D3AE1A1E647CA600B34E56 /* Info.plist */,
 			);
-			path = "FHNW-WS6C-CoffeeApp";
+			name = Assets;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -191,6 +211,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C8D3AE191E647CA600B34E56 /* LaunchScreen.storyboard in Resources */,
+				C8EF65BB1E6F0C0C00B5C8E2 /* SlaboRegular.ttf in Resources */,
 				C8D3AE161E647CA600B34E56 /* Assets.xcassets in Resources */,
 				C8D3AE141E647CA600B34E56 /* Main.storyboard in Resources */,
 			);
@@ -205,7 +226,9 @@
 			files = (
 				C8B45D491E65D0F4006FC962 /* ConfigManager.swift in Sources */,
 				C83844B91E64807A00128033 /* CoffeeType.swift in Sources */,
+				C8EF65BF1E6F673B00B5C8E2 /* DetailTableViewController.swift in Sources */,
 				C83844B11E647EED00128033 /* DataManager.swift in Sources */,
+				C8EF65BD1E6F65F000B5C8E2 /* DetailViewController.swift in Sources */,
 				C83844BD1E648BC800128033 /* DataManagerInitializer.swift in Sources */,
 				C83844AF1E647EDB00128033 /* HelperConsts.swift in Sources */,
 				C8D3AE0D1E647CA600B34E56 /* AppDelegate.swift in Sources */,
@@ -213,6 +236,7 @@
 				C83844B71E64807000128033 /* User.swift in Sources */,
 				C8B45D501E6627ED006FC962 /* MainTableViewControllerCell.swift in Sources */,
 				C8B45D4D1E662576006FC962 /* MainTableViewController.swift in Sources */,
+				C8EF65C11E6F67C800B5C8E2 /* DetailTableViewControllerCell.swift in Sources */,
 				C83844AD1E647ED400128033 /* HelperMethods.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

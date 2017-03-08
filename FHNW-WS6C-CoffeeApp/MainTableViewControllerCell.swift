@@ -11,20 +11,30 @@ import Foundation
 
 class MainTableViewControllerCell: UITableViewCell {
     
-    @IBOutlet weak var userName: UILabel!
-    @IBOutlet weak var coffeeCounter: UILabel!
-
-    func setUserNameLabelText(_ user: User) {
-        self.userName.text = String(format: "%@ %@", user.firstname, user.name)
+    @IBOutlet weak var userNameLabel: UILabel!
+    @IBOutlet weak var userFirstnameLabel: UILabel!
+    @IBOutlet weak var coffeeCounterLabel: UILabel!
+    @IBOutlet weak var userProfileImageView: UIImageView!
+    
+    func setUserNameLabel(name: String) {
+        userNameLabel.text = name
     }
     
-    func setUserCoffeeCounter(_ user: User) {
+    func setUserFirstnameLabel(firstname: String) {
+        userFirstnameLabel.text = firstname
+    }
+    
+    func setCoffeeCounterLabel(coffeeCounter: String) {
+        coffeeCounterLabel.text = coffeeCounter
+    }
+    
+    func setUserCoffeeCounter(user: User) {
         let counter = Array(user.coffees.values)
             .map({
                 (value: CoffeeType) -> Int in
                     return value.counter
             })
             .reduce(0, +)
-        self.coffeeCounter.text = "\(counter)"
+        coffeeCounterLabel.text = "\(counter)"
     }
 }

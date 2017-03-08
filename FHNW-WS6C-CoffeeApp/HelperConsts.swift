@@ -14,11 +14,15 @@ struct HelperConsts {
     // controller
 
     // segues
-    static let showReportIssueViewControllerSegue = "showReportIssueViewController"
+    static let showDetailViewControllerSegue = "showDetailViewControllerSegue"
 
     // notifications
     static let DataManagerNewDataNotification = "DataManagerNewDataNotification"
     
     // colors
     static let topBarBackgroundColor = HelperMethods.uicolorFromHex(0x2F445B)
+    static let backgroundColor = HelperMethods.uicolorFromHex(0xE4DDD9)
+    static let defaultColor = HelperMethods.uicolorFromHex(0x4D351D)
+    static let divicerColor = HelperMethods.uicolorFromHex(0xBCB5B1)
+    static let imageBorderColor = HelperConsts.defaultColor
 }

@@ -1,20 +1,20 @@
 //
-//  MainTableViewController.swift
+//  DetailViewTableViewController.swift
 //  FHNW-WS6C-CoffeeApp
 //
-//  Created by Andreas Gasser on 28.02.17.
+//  Created by Andreas Gasser on 07.03.17.
 //  Copyright © 2017 FHNW. All rights reserved.
 //
 
 import UIKit
 import Foundation
 
-protocol MainTableViewControllerDelegate {
-    func mainTableViewControllerDelegateDidSelectUser(_ controller: MainTableViewController, user: User)
-    func mainTableViewControllerDelegateDidSelectCountUpCoffee(_ controller: MainTableViewController, user: User, coffee: CoffeeType)
+protocol DetailTableViewControllerDelegate {
+//    func mainTableViewControllerDelegateDidSelectUser(_ controller: MainTableViewController, user: User)
+//    func mainTableViewControllerDelegateDidSelectCountUpCoffee(_ controller: MainTableViewController, user: User, coffee: CoffeeType)
 }
 
-class MainTableViewController: UITableViewController {
+class DetailTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +22,7 @@ class MainTableViewController: UITableViewController {
         addObservers()
     }
     
-    var delegate: MainViewController?
+    var delegate: DetailViewController?
     
     lazy var dataManager: DataManager = {
         return DataManager.sharedInstance
@@ -48,24 +48,22 @@ class MainTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell:MainTableViewControllerCell = tableView.dequeueReusableCell(withIdentifier: "MainTableViewControllerCell", for: indexPath) as! MainTableViewControllerCell
-       
-        let users: [User] = dataManager.usersSortedArray()
-        let user = users[indexPath.row]
+        let cell:DetailTableViewControllerCell = tableView.dequeueReusableCell(withIdentifier: "DetailTableViewControllerCell", for: indexPath) as! DetailTableViewControllerCell
+        
+        //let coffeeType: [CoffeeType] = dataManager.usersSortedArray()
+        //var coffeeType
         
         // set tableViewCell
-        cell.setUserNameLabel(name: user.name)
-        cell.setUserFirstnameLabel(firstname: user.firstname)
-        cell.setUserCoffeeCounter(user: user)
+        //cell.coffeeCounterLabel.text =
         
         // set cell style
         cell.backgroundColor = HelperConsts.backgroundColor
         
         // set image style
-        cell.userProfileImageView.layer.cornerRadius = cell.userProfileImageView.frame.size.width / 2
-        cell.userProfileImageView.clipsToBounds = true
-        cell.userProfileImageView.layer.borderWidth = 1.0
-        cell.userProfileImageView.layer.borderColor = HelperConsts.imageBorderColor.cgColor
+        cell.coffeeTypeView.layer.cornerRadius = cell.coffeeTypeView.frame.size.width / 2
+        cell.coffeeTypeView.clipsToBounds = true
+        cell.coffeeTypeView.layer.borderWidth = 1.0
+        cell.coffeeTypeView.layer.borderColor = HelperConsts.imageBorderColor.cgColor
         
         return cell
     }
@@ -75,7 +73,7 @@ class MainTableViewController: UITableViewController {
         let user = users[indexPath.row]
         
         //delegate!.mainTableViewControllerDelegateDidSelectUser(self, user: user)
-
+        
     }
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -85,5 +83,5 @@ class MainTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 70
     }
-
+    
 }

@@ -19,13 +19,15 @@ class MainViewController: UIViewController, MainTableViewControllerDelegate {
         return ConfigManager.sharedInstance
     }()
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
+    var selectedUser: User?
+    
+    @IBOutlet weak var fhnwTitleLabel: UILabel!
+    @IBOutlet weak var coffeeTitelLabel: UILabel!
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+        initView()
         customLoadView()
     }
     
@@ -40,6 +42,15 @@ class MainViewController: UIViewController, MainTableViewControllerDelegate {
     }
     
     // init view
+    func initView() {
+        // set background color
+        view.backgroundColor = HelperConsts.backgroundColor
+        
+        // set color and fonts
+        fhnwTitleLabel.textColor = HelperConsts.defaultColor
+        coffeeTitelLabel.textColor = HelperConsts.defaultColor
+    }
+    
     func customLoadView() {
         
     }
@@ -50,8 +61,19 @@ class MainViewController: UIViewController, MainTableViewControllerDelegate {
         customLoadView()
     }
     
+    //
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // set delegate of TechTableViewController to self, this is needed for proper event handling
+        if segue.identifier == HelperConsts.showDetailViewControllerSegue {
+            let destinationController: DetailViewController = segue.destination as! DetailViewController
+            destinationController.delegate = self
+            destinationController.selectedUser = selectedUser
+        }
+    }
+    
     // MainTableViewControllerDelegate delegate methods
     func mainTableViewControllerDelegateDidSelectUser(_ controller: MainTableViewController, user: User) {
+        selectedUser = user
         NSLog("minTableViewControllerDelegateDidSelectUser")
     }
     
