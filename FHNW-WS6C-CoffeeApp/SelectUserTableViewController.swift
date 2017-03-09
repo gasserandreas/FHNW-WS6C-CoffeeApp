@@ -9,24 +9,29 @@
 import UIKit
 import Foundation
 
-protocol MainTableViewControllerDelegate {
-    func mainTableViewControllerDelegateDidSelectUser(_ controller: MainTableViewController, user: User)
-    func mainTableViewControllerDelegateDidSelectCountUpCoffee(_ controller: MainTableViewController, user: User, coffee: CoffeeType)
+protocol SelectUserTableViewControllerDelegate {
+    func selectUserTableViewControllerDelegateDidSelectUser(_ controller: SelectUserTableViewController, user: User)
 }
 
-class MainTableViewController: UITableViewController {
+class SelectUserTableViewController: UITableViewController {
+    
+    lazy var dataManager: DataManager = {
+        return DataManager.sharedInstance
+    }()
+    
+    var selectedUser: User? {
+        get {
+            return dataManager.selectedUser()
+        }
+    }
+    
+    var delegate: SelectUserViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = HelperConsts.backgroundColor
         addObservers()
     }
-    
-    var delegate: MainViewController?
-    
-    lazy var dataManager: DataManager = {
-        return DataManager.sharedInstance
-    }()
     
     func addObservers() {
         let notificationCenter = NotificationCenter.default
@@ -48,24 +53,18 @@ class MainTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell:MainTableViewControllerCell = tableView.dequeueReusableCell(withIdentifier: "MainTableViewControllerCell", for: indexPath) as! MainTableViewControllerCell
+        let cell:SelectUserTableViewControllerCell = tableView.dequeueReusableCell(withIdentifier: "SelectUserTableViewControllerCell", for: indexPath) as! SelectUserTableViewControllerCell
        
         let users: [User] = dataManager.usersSortedArray()
         let user = users[indexPath.row]
         
         // set tableViewCell
-        cell.setUserNameLabel(name: user.name)
-        cell.setUserFirstnameLabel(firstname: user.firstname)
-        cell.setUserCoffeeCounter(user: user)
+        cell.setView()
+        cell.setUser(user: user)
         
-        // set cell style
-        cell.backgroundColor = HelperConsts.backgroundColor
-        
-        // set image style
-        cell.userProfileImageView.layer.cornerRadius = cell.userProfileImageView.frame.size.width / 2
-        cell.userProfileImageView.clipsToBounds = true
-        cell.userProfileImageView.layer.borderWidth = 1.0
-        cell.userProfileImageView.layer.borderColor = HelperConsts.imageBorderColor.cgColor
+        if (user.id == selectedUser?.id) {
+            cell.setSelected(true, animated: false)
+        }
         
         return cell
     }
@@ -74,7 +73,7 @@ class MainTableViewController: UITableViewController {
         let users: [User] = dataManager.usersSortedArray()
         let user = users[indexPath.row]
         
-        //delegate!.mainTableViewControllerDelegateDidSelectUser(self, user: user)
+        delegate!.selectUserTableViewControllerDelegateDidSelectUser(self, user: user)
 
     }
     
@@ -83,7 +82,7 @@ class MainTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 70
+        return 160
     }
 
 }

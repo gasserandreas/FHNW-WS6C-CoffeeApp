@@ -9,22 +9,29 @@
 import UIKit
 import Foundation
 
-class MainViewController: UIViewController, MainTableViewControllerDelegate {
+protocol SelectUserViewControllerDelegate {
+    func selectUserViewControllerDelegateDidSelectUser(_ controller: SelectUserViewController)
+}
+
+class SelectUserViewController: UIViewController, SelectUserTableViewControllerDelegate {
     
     lazy var dataManager: DataManager = {
         return DataManager.sharedInstance
     }()
     
-    lazy var configManager: ConfigManager = {
-        return ConfigManager.sharedInstance
-    }()
+    var selectedUser: User? {
+        get {
+            return dataManager.selectedUser()
+        }
+    }
     
-    var selectedUser: User?
+    var delegate: CoffeeViewController?
     
     @IBOutlet weak var fhnwTitleLabel: UILabel!
     @IBOutlet weak var coffeeTitelLabel: UILabel!
+    @IBOutlet weak var headingLabel: UILabel!
     
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         initView()
@@ -49,6 +56,7 @@ class MainViewController: UIViewController, MainTableViewControllerDelegate {
         // set color and fonts
         fhnwTitleLabel.textColor = HelperConsts.defaultColor
         coffeeTitelLabel.textColor = HelperConsts.defaultColor
+        headingLabel.textColor = HelperConsts.defaultColor
     }
     
     func customLoadView() {
@@ -61,24 +69,18 @@ class MainViewController: UIViewController, MainTableViewControllerDelegate {
         customLoadView()
     }
     
-    //
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // set delegate of TechTableViewController to self, this is needed for proper event handling
-        if segue.identifier == HelperConsts.showDetailViewControllerSegue {
-            let destinationController: DetailViewController = segue.destination as! DetailViewController
+        if segue.identifier == HelperConsts.showSelectUserTableViewControllerSeque {
+            let destinationController: SelectUserTableViewController = segue.destination as! SelectUserTableViewController
             destinationController.delegate = self
-            destinationController.selectedUser = selectedUser
         }
     }
+
     
     // MainTableViewControllerDelegate delegate methods
-    func mainTableViewControllerDelegateDidSelectUser(_ controller: MainTableViewController, user: User) {
-        selectedUser = user
-        NSLog("minTableViewControllerDelegateDidSelectUser")
-    }
-    
-    func mainTableViewControllerDelegateDidSelectCountUpCoffee(_ controller: MainTableViewController, user: User, coffee: CoffeeType) {
-        NSLog("minTableViewControllerDelegateDidSelectCountUpCoffee")
+    func selectUserTableViewControllerDelegateDidSelectUser(_ controller: SelectUserTableViewController, user: User) {
+        dataManager.setSelectedUser(user: user)
+        delegate!.selectUserViewControllerDelegateDidSelectUser(self)
     }
 
 }

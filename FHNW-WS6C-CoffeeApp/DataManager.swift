@@ -19,10 +19,13 @@ class DataManager: NSObject {
     
     // define private properties
     private var usersDict = [String: User]()
+    private var coffeeDict = [String: CoffeeType]()
     
     fileprivate lazy var configManager: ConfigManager = {
         return ConfigManager.sharedInstance
     }()
+    
+    private var selectedUserId: String?
     
     // singleton instance
     private static var __once: () = { () -> Void in
@@ -48,7 +51,8 @@ class DataManager: NSObject {
         
         if configManager.testing {
             // init basic values
-            self.usersDict = DataManagerInitializer.initUsers()
+            usersDict = DataManagerInitializer.initUsers()
+            coffeeDict = DataManagerInitializer.initCoffees()
             
             // inform observers
             notificationCenter.post(name: Notification.Name(rawValue: HelperConsts.DataManagerNewDataNotification), object: nil)
@@ -74,12 +78,35 @@ class DataManager: NSObject {
     }
     
     func users() -> Dictionary<String, User> {
-        return usersDict;
+        return usersDict
     }
+    
+    func coffeeTypes() -> Dictionary<String, CoffeeType> {
+        return coffeeDict
+    }
+    
+    func selectedUser() -> User? {
+        if let userId = selectedUserId {
+            if let user = usersDict[userId] {
+                return user
+            }
+        }
+        return usersDict["1"]
+        //return nil
+    }
+    
+    func setSelectedUser(user: User) {
+        selectedUserId = user.id
+    }
+
     
     // return sites in a sorted array, change $0.name > $1.name to $0.name < $1.name to switch rule
     func usersSortedArray() -> Array<User> {
         return HelperMethods.sortUserArray(Array(usersDict.values))
+    }
+    
+    func coffeeTypesSortedArray() -> Array<CoffeeType> {
+        return HelperMethods.sortCoffeeTypeArray(Array(coffeeDict.values))
     }
     
 }

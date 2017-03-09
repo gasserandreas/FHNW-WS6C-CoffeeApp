@@ -2,7 +2,8 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "second.pdf"
+      "filename" : "coffee-cup.png",
+      "scale" : "1x"
     }
   ],
   "info" : {

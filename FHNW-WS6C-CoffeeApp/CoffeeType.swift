@@ -9,13 +9,13 @@
 import Foundation
 
 class CoffeeType: NSObject {
-    let id: Int
+    let id: String
     let name: String
-    let counter: Int
+    let color: String
     
-    init(id: Int, name: String, counter: Int) {
+    init(id: String, name: String, color: String) {
         self.id = id
         self.name = name
-        self.counter = counter
+        self.color = color
     }
 }

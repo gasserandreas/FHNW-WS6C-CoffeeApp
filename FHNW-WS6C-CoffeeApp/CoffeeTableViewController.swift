@@ -9,12 +9,12 @@
 import UIKit
 import Foundation
 
-protocol DetailTableViewControllerDelegate {
+protocol CoffeeTableViewControllerDelegate {
 //    func mainTableViewControllerDelegateDidSelectUser(_ controller: MainTableViewController, user: User)
 //    func mainTableViewControllerDelegateDidSelectCountUpCoffee(_ controller: MainTableViewController, user: User, coffee: CoffeeType)
 }
 
-class DetailTableViewController: UITableViewController {
+class CoffeeTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +22,7 @@ class DetailTableViewController: UITableViewController {
         addObservers()
     }
     
-    var delegate: DetailViewController?
+    var delegate: CoffeeViewController?
     
     lazy var dataManager: DataManager = {
         return DataManager.sharedInstance
@@ -44,36 +44,20 @@ class DetailTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataManager.usersSortedArray().count
+        return dataManager.coffeeTypesSortedArray().count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell:DetailTableViewControllerCell = tableView.dequeueReusableCell(withIdentifier: "DetailTableViewControllerCell", for: indexPath) as! DetailTableViewControllerCell
+        let cell:CoffeeTableViewControllerCell = tableView.dequeueReusableCell(withIdentifier: "CoffeeTableViewControllerCell", for: indexPath) as! CoffeeTableViewControllerCell
         
-        //let coffeeType: [CoffeeType] = dataManager.usersSortedArray()
-        //var coffeeType
+        let coffeeTypes: [CoffeeType] = dataManager.coffeeTypesSortedArray()
+        let coffeeType = coffeeTypes[indexPath.row]
         
-        // set tableViewCell
-        //cell.coffeeCounterLabel.text =
-        
-        // set cell style
-        cell.backgroundColor = HelperConsts.backgroundColor
-        
-        // set image style
-        cell.coffeeTypeView.layer.cornerRadius = cell.coffeeTypeView.frame.size.width / 2
-        cell.coffeeTypeView.clipsToBounds = true
-        cell.coffeeTypeView.layer.borderWidth = 1.0
-        cell.coffeeTypeView.layer.borderColor = HelperConsts.imageBorderColor.cgColor
+        // set table view
+        cell.setCoffeeType(coffeeType: coffeeType)
+        cell.setView()
         
         return cell
-    }
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let users: [User] = dataManager.usersSortedArray()
-        let user = users[indexPath.row]
-        
-        //delegate!.mainTableViewControllerDelegateDidSelectUser(self, user: user)
-        
     }
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -81,7 +65,7 @@ class DetailTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 70
+        return 140
     }
     
 }
