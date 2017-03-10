@@ -17,6 +17,8 @@ struct HelperConsts {
     static let showCoffeeTableViewControllerSeque = "showCoffeeTableViewControllerSeque"
     static let showSelectUserViewControllerSeque = "showSelectUserViewControllerSeque"
     static let showSelectUserTableViewControllerSeque = "showSelectUserTableViewControllerSeque"
+    static let showSummaryViewControllerSeque = "showSummaryViewControllerSeque"
+    static let showSummaryTableViewControllerSeque = "showSummaryTableViewControllerSeque"
 
     // notifications
     static let DataManagerNewDataNotification = "DataManagerNewDataNotification"

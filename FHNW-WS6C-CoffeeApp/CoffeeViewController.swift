@@ -9,9 +9,8 @@
 import UIKit
 import Foundation
 
-class CoffeeViewController: UIViewController, SelectUserViewControllerDelegate {
+class CoffeeViewController: UIViewController, SelectUserViewControllerDelegate, SummaryViewControllerDelegate {
 
-    
     lazy var dataManager: DataManager = {
         return DataManager.sharedInstance
     }()
@@ -62,7 +61,11 @@ class CoffeeViewController: UIViewController, SelectUserViewControllerDelegate {
         if segue.identifier == HelperConsts.showSelectUserViewControllerSeque {
             let destinationController: SelectUserViewController = segue.destination as! SelectUserViewController
             destinationController.delegate = self
+        } else if segue.identifier == HelperConsts.showSummaryViewControllerSeque {
+            let destinationController: SummaryViewController = segue.destination as! SummaryViewController
+            destinationController.delegate = self
         }
+
     }
     
     // perform refresh of view
@@ -71,8 +74,13 @@ class CoffeeViewController: UIViewController, SelectUserViewControllerDelegate {
         customLoadView()
     }
     
+    // delegate methods
     internal func selectUserViewControllerDelegateDidSelectUser(_ controller: SelectUserViewController) {
-        NSLog("selectUserViewControllerDelegateDidSelectUser")
+        _ = self.navigationController?.popToRootViewController(animated: true)
+    }
+    
+    internal func summaryViewControllerDelegateDidSelectBack(_ controller: SummaryViewController) {
+        NSLog("summaryViewControllerDelegateDidSelectBack")
         _ = self.navigationController?.popToRootViewController(animated: true)
     }
     

@@ -13,6 +13,9 @@
         <array key="SF-UI-Text-Light.otf">
             <string>SFUIText-Light</string>
         </array>
+        <array key="SF-UI-Text-Medium.otf">
+            <string>SFUIText-Medium</string>
+        </array>
         <array key="SlaboRegular.ttf">
             <string>Slabo13px-Regular</string>
         </array>
@@ -156,6 +159,17 @@
                                     <outletCollection property="gestureRecognizers" destination="vLe-nM-xu6" appends="YES" id="C2E-6B-6MD"/>
                                 </connections>
                             </imageView>
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Info Button" translatesAutoresizingMaskIntoConstraints="NO" id="nmu-rh-9AA">
+                                <rect key="frame" x="334" y="35" width="25" height="25"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="25" id="ADd-wS-tx0"/>
+                                    <constraint firstAttribute="height" constant="25" id="DVs-Yc-JsJ"/>
+                                </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="GEt-tC-04K" appends="YES" id="Mec-Ko-1RU"/>
+                                </connections>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -163,6 +177,8 @@
                             <constraint firstItem="6EV-pg-iXF" firstAttribute="centerX" secondItem="6aW-8E-1z1" secondAttribute="centerX" id="7TY-Hf-roY"/>
                             <constraint firstAttribute="trailing" secondItem="Oay-LG-ZZu" secondAttribute="trailing" id="E9Q-7G-lhx"/>
                             <constraint firstItem="6EV-pg-iXF" firstAttribute="top" secondItem="Q46-cg-YOM" secondAttribute="bottom" constant="15" id="JHj-LF-EEZ"/>
+                            <constraint firstItem="nmu-rh-9AA" firstAttribute="centerY" secondItem="6EV-pg-iXF" secondAttribute="centerY" id="Kml-vQ-Cja"/>
+                            <constraint firstItem="nmu-rh-9AA" firstAttribute="trailing" secondItem="6aW-8E-1z1" secondAttribute="trailingMargin" id="MDd-j3-290"/>
                             <constraint firstItem="DGe-tP-ydd" firstAttribute="top" secondItem="Oay-LG-ZZu" secondAttribute="bottom" id="NRT-sb-7Za"/>
                             <constraint firstItem="6EV-pg-iXF" firstAttribute="centerY" secondItem="r1J-ZV-C1k" secondAttribute="centerY" id="Njo-fU-YrQ"/>
                             <constraint firstItem="Oay-LG-ZZu" firstAttribute="top" secondItem="cbh-Fo-7Dv" secondAttribute="bottom" constant="30" id="PZt-ay-avy"/>
@@ -180,13 +196,18 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nan-9M-4nG" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="vLe-nM-xu6">
+                <tapGestureRecognizer id="vLe-nM-xu6" userLabel="BackButtonTapGestureRegognizer">
                     <connections>
                         <action selector="userDidSelectShowSelectUserViewControllerWithSender:" destination="AmF-ro-Hdq" id="Q9V-aF-t1J"/>
                     </connections>
                 </tapGestureRecognizer>
+                <tapGestureRecognizer id="GEt-tC-04K" userLabel="InfoButtonTapGestureRegognizer">
+                    <connections>
+                        <segue destination="Pxp-Cj-vFr" kind="show" identifier="showSummaryViewControllerSeque" id="308-Jn-fq8"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-66" y="-469"/>
+            <point key="canvasLocation" x="-66" y="-468"/>
         </scene>
         <!--Select User Table View Controller-->
         <scene sceneID="6kw-rn-kJU">
@@ -323,24 +344,6 @@
             </objects>
             <point key="canvasLocation" x="913" y="-443"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="uvx-BK-ZfC">
-            <objects>
-                <viewController id="VHZ-3N-O5N" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="FjZ-tr-kF8"/>
-                        <viewControllerLayoutGuide type="bottom" id="7Tn-Vb-Z8S"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="WRp-29-TYn">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="VfZ-so-7yS" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2808.8000000000002" y="-442.12893553223392"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="Fsg-1B-Cmg">
             <objects>
@@ -361,9 +364,162 @@
             </objects>
             <point key="canvasLocation" x="-1087" y="-468"/>
         </scene>
+        <!--Summary View Controller-->
+        <scene sceneID="T8o-Vw-bqR">
+            <objects>
+                <viewController id="Pxp-Cj-vFr" customClass="SummaryViewController" customModule="FHNW_WS6C_CoffeeApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="eVg-Zy-LSk"/>
+                        <viewControllerLayoutGuide type="bottom" id="DoK-f1-j5S"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ALJ-DP-CeT">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ADD COFFEE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HGr-Ly-Jbn">
+                                <rect key="frame" x="57" y="35" width="260" height="26"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="260" id="Xdx-Jm-64O"/>
+                                    <constraint firstAttribute="height" constant="26" id="Z5O-Ve-q8Y"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="SFUIText-Light" family="SF UI Text" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8RS-2w-ecU">
+                                <rect key="frame" x="0.0" y="221" width="375" height="376"/>
+                                <connections>
+                                    <segue destination="igo-TJ-RmC" kind="embed" identifier="showSummaryTableViewControllerSeque" id="d0F-5b-QBt"/>
+                                </connections>
+                            </containerView>
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Back Button" translatesAutoresizingMaskIntoConstraints="NO" id="38t-rS-oOJ">
+                                <rect key="frame" x="16" y="36" width="15" height="25"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="15" id="sAJ-jo-Roz"/>
+                                    <constraint firstAttribute="height" constant="25" id="xPA-gs-a9J"/>
+                                </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="9hO-lu-raJ" appends="YES" id="hpF-Yf-ILT"/>
+                                </connections>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sbm-3G-XtY" customClass="CoffeeCapsuleView" customModule="FHNW_WS6C_CoffeeApp" customModuleProvider="target">
+                                <rect key="frame" x="137.5" y="91" width="100" height="100"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="Rns-nj-kgV"/>
+                                    <constraint firstAttribute="width" constant="100" id="d8J-QD-jiJ"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total 130" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ufs-zT-mri">
+                                <rect key="frame" x="160" y="619" width="180" height="28"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="180" id="OO7-q5-DpW"/>
+                                    <constraint firstAttribute="height" constant="28" id="fZI-Cd-mjT"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="SFUIText-Medium" family="SF UI Text" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="38t-rS-oOJ" firstAttribute="leading" secondItem="ALJ-DP-CeT" secondAttribute="leadingMargin" id="3YI-Jj-gIt"/>
+                            <constraint firstItem="Ufs-zT-mri" firstAttribute="top" secondItem="8RS-2w-ecU" secondAttribute="bottom" constant="22" id="6lS-Yi-0JT"/>
+                            <constraint firstItem="HGr-Ly-Jbn" firstAttribute="top" secondItem="eVg-Zy-LSk" secondAttribute="bottom" constant="15" id="HL2-mg-4Ga"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Ufs-zT-mri" secondAttribute="trailing" constant="19" id="KQh-0h-bTO"/>
+                            <constraint firstItem="DoK-f1-j5S" firstAttribute="top" secondItem="Ufs-zT-mri" secondAttribute="bottom" constant="20" id="Lx0-0e-YBk"/>
+                            <constraint firstItem="8RS-2w-ecU" firstAttribute="leading" secondItem="ALJ-DP-CeT" secondAttribute="leading" id="PMW-qP-aXU"/>
+                            <constraint firstItem="HGr-Ly-Jbn" firstAttribute="centerX" secondItem="ALJ-DP-CeT" secondAttribute="centerX" id="WHI-aW-lPz"/>
+                            <constraint firstItem="Sbm-3G-XtY" firstAttribute="centerX" secondItem="ALJ-DP-CeT" secondAttribute="centerX" id="bqL-uf-qcR"/>
+                            <constraint firstAttribute="trailing" secondItem="8RS-2w-ecU" secondAttribute="trailing" id="ehk-1t-Tmf"/>
+                            <constraint firstItem="8RS-2w-ecU" firstAttribute="top" secondItem="Sbm-3G-XtY" secondAttribute="bottom" constant="30" id="kFD-DP-jAA"/>
+                            <constraint firstItem="HGr-Ly-Jbn" firstAttribute="centerY" secondItem="38t-rS-oOJ" secondAttribute="centerY" id="lv7-u2-n2y"/>
+                            <constraint firstItem="Sbm-3G-XtY" firstAttribute="top" secondItem="HGr-Ly-Jbn" secondAttribute="bottom" constant="30" id="mGo-ld-Lao"/>
+                            <constraint firstItem="8RS-2w-ecU" firstAttribute="leading" secondItem="ALJ-DP-CeT" secondAttribute="leading" id="sp7-DY-s10"/>
+                            <constraint firstAttribute="trailing" secondItem="8RS-2w-ecU" secondAttribute="trailing" id="xCM-Yh-KSc"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="XDg-HX-L4K"/>
+                    <connections>
+                        <outlet property="coffeeCapsuleView" destination="Sbm-3G-XtY" id="y5W-yI-qjL"/>
+                        <outlet property="headingLabel" destination="HGr-Ly-Jbn" id="Sqc-fn-qAV"/>
+                        <outlet property="totalCoffeeLabel" destination="Ufs-zT-mri" id="Eel-vz-p7P"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EcN-Ug-MTg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="9hO-lu-raJ" userLabel="BackButtonTapGestureRegognizer">
+                    <connections>
+                        <action selector="userDidSelectShowSelectUserViewControllerWithSender:" destination="Pxp-Cj-vFr" id="rJp-HL-72m"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="-66.400000000000006" y="330.58470764617692"/>
+        </scene>
+        <!--Summary Table View Controller-->
+        <scene sceneID="9FT-Fy-Z2k">
+            <objects>
+                <tableViewController id="igo-TJ-RmC" customClass="SummaryTableViewController" customModule="FHNW_WS6C_CoffeeApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="FsR-ct-ZeE">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="376"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SummaryTableViewControllerCell" rowHeight="70" id="TT7-ey-EHD" customClass="SummaryTableViewControllerCell" customModule="FHNW_WS6C_CoffeeApp" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="70"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TT7-ey-EHD" id="yz2-QW-ZrO">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="69"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Andreas Gasser" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2hw-Lt-sv7">
+                                            <rect key="frame" x="35" y="24.5" width="220" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="220" id="SGd-8x-9xD"/>
+                                                <constraint firstAttribute="height" constant="21" id="oKv-t2-vnp"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="SFUIText-Light" family="SF UI Text" pointSize="20"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="25" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tr7-6c-xBY">
+                                            <rect key="frame" x="280" y="24.5" width="60" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="60" id="5x1-u7-GGg"/>
+                                                <constraint firstAttribute="height" constant="21" id="JQi-lQ-DBP"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="SFUIText-Medium" family="SF UI Text" pointSize="20"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="2hw-Lt-sv7" firstAttribute="leading" secondItem="yz2-QW-ZrO" secondAttribute="leadingMargin" constant="27" id="SWj-4Z-yYa"/>
+                                        <constraint firstItem="2hw-Lt-sv7" firstAttribute="centerY" secondItem="yz2-QW-ZrO" secondAttribute="centerY" id="dD3-9M-x16"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="tr7-6c-xBY" secondAttribute="trailing" constant="27" id="wfH-8X-x6l"/>
+                                        <constraint firstItem="tr7-6c-xBY" firstAttribute="centerY" secondItem="2hw-Lt-sv7" secondAttribute="centerY" id="wuU-iF-MqA"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="coffeeCounter" destination="tr7-6c-xBY" id="BMR-Om-CUt"/>
+                                    <outlet property="userName" destination="2hw-Lt-sv7" id="ZTF-U0-JFz"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="igo-TJ-RmC" id="zmK-1H-t4T"/>
+                            <outlet property="delegate" destination="igo-TJ-RmC" id="fnn-pD-9Br"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PaB-BZ-ihK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="912.79999999999995" y="330.13493253373315"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Back Button" width="70" height="125"/>
+        <image name="Info Button" width="120" height="125"/>
         <image name="coffee-cup" width="285" height="270"/>
         <image name="minus" width="145" height="40"/>
         <image name="person-1" width="1922" height="1922"/>

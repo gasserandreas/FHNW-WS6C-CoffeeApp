@@ -24,7 +24,6 @@ class CoffeeTableViewControllerCell: UITableViewCell {
     
     func setCoffeeType(coffeeType: CoffeeType) {
         coffeeTypeName.text = coffeeType.name
-        NSLog(coffeeType.color)
         coffeeCapsuleView.capsuleColor = HelperMethods.uicolorFromString(coffeeType.color)
     }
 }
