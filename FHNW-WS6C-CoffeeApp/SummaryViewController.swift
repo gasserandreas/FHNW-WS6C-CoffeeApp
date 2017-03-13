@@ -79,4 +79,8 @@ class SummaryViewController: UIViewController, SelectUserTableViewControllerDele
         delegate!.summaryViewControllerDelegateDidSelectBack(self)
     }
     
+    @IBAction func userDidSelectBackButton(sender: UILabel) {
+        delegate!.summaryViewControllerDelegateDidSelectBack(self)
+    }
+    
 }

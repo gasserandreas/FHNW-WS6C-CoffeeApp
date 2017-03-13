@@ -450,7 +450,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EcN-Ug-MTg" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="9hO-lu-raJ" userLabel="BackButtonTapGestureRegognizer">
                     <connections>
-                        <action selector="userDidSelectShowSelectUserViewControllerWithSender:" destination="Pxp-Cj-vFr" id="rJp-HL-72m"/>
+                        <action selector="userDidSelectBackButtonWithSender:" destination="Pxp-Cj-vFr" id="gpr-hg-3kr"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
