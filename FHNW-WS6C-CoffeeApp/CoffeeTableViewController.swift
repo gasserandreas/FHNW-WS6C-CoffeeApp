@@ -1,27 +1,28 @@
 //
-//  MainTableViewController.swift
+//  DetailViewTableViewController.swift
 //  FHNW-WS6C-CoffeeApp
 //
-//  Created by Andreas Gasser on 28.02.17.
+//  Created by Andreas Gasser on 07.03.17.
 //  Copyright © 2017 FHNW. All rights reserved.
 //
 
 import UIKit
 import Foundation
 
-protocol MainTableViewControllerDelegate {
-    func mainTableViewControllerDelegateDidSelectUser(_ controller: MainTableViewController, user: User)
-    func mainTableViewControllerDelegateDidSelectCountUpCoffee(_ controller: MainTableViewController, user: User, coffee: CoffeeType)
+protocol CoffeeTableViewControllerDelegate {
+//    func mainTableViewControllerDelegateDidSelectUser(_ controller: MainTableViewController, user: User)
+//    func mainTableViewControllerDelegateDidSelectCountUpCoffee(_ controller: MainTableViewController, user: User, coffee: CoffeeType)
 }
 
-class MainTableViewController: UITableViewController {
+class CoffeeTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = HelperConsts.backgroundColor
         addObservers()
     }
     
-    var delegate: MainViewController?
+    var delegate: CoffeeViewController?
     
     lazy var dataManager: DataManager = {
         return DataManager.sharedInstance
@@ -43,33 +44,28 @@ class MainTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataManager.usersSortedArray().count
+        return dataManager.coffeeTypesSortedArray().count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell:MainTableViewControllerCell = tableView.dequeueReusableCell(withIdentifier: "MainTableViewControllerCell", for: indexPath) as! MainTableViewControllerCell
-       
-        let users: [User] = dataManager.usersSortedArray()
-        let user = users[indexPath.row]
+        let cell:CoffeeTableViewControllerCell = tableView.dequeueReusableCell(withIdentifier: "CoffeeTableViewControllerCell", for: indexPath) as! CoffeeTableViewControllerCell
         
-        // set tableViewCell
+        let coffeeTypes: [CoffeeType] = dataManager.coffeeTypesSortedArray()
+        let coffeeType = coffeeTypes[indexPath.row]
         
-        cell.setUserNameLabelText(user)
-        cell.setUserCoffeeCounter(user)
+        // set table view
+        cell.setCoffeeType(coffeeType: coffeeType)
+        cell.setView()
         
         return cell
-    }
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let users: [User] = dataManager.usersSortedArray()
-        let user = users[indexPath.row]
-        
-        delegate!.mainTableViewControllerDelegateDidSelectUser(self, user: user)
-
     }
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return false
     }
-
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 140
+    }
+    
 }

@@ -21,6 +21,26 @@ struct HelperMethods {
         return UIColor(red:red, green:green, blue:blue, alpha:1.0)
     }
     
+    static func uicolorFromString(_ hexValue:String, alpha:CGFloat? = 1.0) -> UIColor {
+        // Convert hex string to an integer
+        var uiInt: UInt32 = 0
+        // Create scanner
+        let scanner: Scanner = Scanner(string: hexValue)
+        // Tell scanner to skip the # character
+        scanner.charactersToBeSkipped = NSCharacterSet(charactersIn: "#") as CharacterSet
+        // Scan hex value
+        scanner.scanHexInt32(&uiInt)
+        
+        let hexInt = Int(uiInt)
+        let red = CGFloat((hexInt & 0xff0000) >> 16) / 255.0
+        let green = CGFloat((hexInt & 0xff00) >> 8) / 255.0
+        let blue = CGFloat((hexInt & 0xff) >> 0) / 255.0
+        let alpha = alpha!
+        // Create color object, specifying alpha as well
+        let color = UIColor(red: red, green: green, blue: blue, alpha: alpha)
+        return color
+    }
+    
     static func setStatusBar(_ view: UIView) {
         // create view, set background add to parent view
         let newView = UIView()
@@ -45,5 +65,9 @@ struct HelperMethods {
     
     static func sortUserArray(_ users: [User]) -> Array<User> {
         return users.sorted(by: { $0.name < $1.name })
+    }
+    
+    static func sortCoffeeTypeArray(_ coffeeTypes: [CoffeeType]) -> Array<CoffeeType> {
+        return coffeeTypes.sorted(by: { $0.name < $1.name })
     }
 }

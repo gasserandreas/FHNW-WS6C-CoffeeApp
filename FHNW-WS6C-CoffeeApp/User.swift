@@ -9,24 +9,24 @@
 import Foundation
 
 class User: NSObject {
-    let id: Int
+    let id: String
     let name: String
     let firstname: String
-    let favouriteCoffee: CoffeeType
-    var coffees: Dictionary<String, CoffeeType> = Dictionary()
+    let imageName: String
+    var coffees: Dictionary<String, Int> = Dictionary()
     
-    init(id: Int, name: String, firstname: String, favouriteCoffee: CoffeeType) {
+    init(id: String, name: String, firstname: String, imageName: String) {
         self.id = id
         self.name = name
         self.firstname = firstname
-        self.favouriteCoffee = favouriteCoffee
+        self.imageName = imageName
     }
     
-    init(id: Int, name: String, firstname: String, favouriteCoffee: CoffeeType, coffees: Dictionary<String, CoffeeType>) {
+    init(id: String, name: String, firstname: String, imageName: String, coffees: Dictionary<String, Int>) {
         self.id = id
         self.name = name
         self.firstname = firstname
-        self.favouriteCoffee = favouriteCoffee
+        self.imageName = imageName
         self.coffees = coffees
     }
 }
