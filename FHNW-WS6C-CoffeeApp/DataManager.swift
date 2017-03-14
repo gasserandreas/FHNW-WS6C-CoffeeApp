@@ -14,18 +14,7 @@ struct DataManagerStatic {
     static var instance: DataManager? = nil
 }
 
-
 class DataManager: NSObject {
-    
-    // define private properties
-    private var usersDict = [String: User]()
-    private var coffeeDict = [String: CoffeeType]()
-    
-    fileprivate lazy var configManager: ConfigManager = {
-        return ConfigManager.sharedInstance
-    }()
-    
-    private var selectedUserId: String?
     
     // singleton instance
     private static var __once: () = { () -> Void in
@@ -37,11 +26,27 @@ class DataManager: NSObject {
         return DataManagerStatic.instance!
     }
     
-    fileprivate lazy var notificationCenter: NotificationCenter = {
+    // define private properties
+    private var usersDict = [String: User]()
+    private var coffeeDict = [String: CoffeeType]()
+    
+    private lazy var configManager: ConfigManager = {
+        return ConfigManager.sharedInstance
+    }()
+    
+    private var fileManager: FileManager {
+        get {
+            return FileManager.sharedInstance
+        }
+    }
+    
+    private var selectedUserId: String?
+    
+    private lazy var notificationCenter: NotificationCenter = {
         return NotificationCenter.default
     }()
     
-    fileprivate lazy var mainQueue: OperationQueue = {
+    private lazy var mainQueue: OperationQueue = {
         return OperationQueue.main
     }()
     
@@ -49,13 +54,17 @@ class DataManager: NSObject {
         super.init()
         NSLog("uuii init DataManager")
         
+        // load data
+        loadCoffeeDataFromFileSystem()
+        
         if configManager.testing {
             // init basic values
-            usersDict = DataManagerInitializer.initUsers()
+            //usersDict = DataManagerInitializer.initUsers()
             coffeeDict = DataManagerInitializer.initCoffees()
             
             // inform observers
-            notificationCenter.post(name: Notification.Name(rawValue: HelperConsts.DataManagerNewDataNotification), object: nil)
+            notificationCenter.post(name: Notification.Name(rawValue: HelperConsts.DataManagerNewUserDataNotification), object: nil)
+            //notificationCenter.post(name: Notification.Name(rawValue: HelperConsts.DataManagerNewCoffeeDataNotification), object: nil)
         }
         
         addObservers()
@@ -63,18 +72,59 @@ class DataManager: NSObject {
     
     func addObservers() {
         
-        /*
-        // reload data model if new file is available
-        let observer = notificationCenter.addObserver(forName: NSNotification.Name(rawValue: HelperMethods.newDataFileNotification), object: nil, queue: mainQueue, using: { _ in
-            self.loadDataModelDataFromFileSystem()
+        _ = notificationCenter.addObserver(forName: NSNotification.Name(rawValue: HelperConsts.CommunicationManagerNewUserFileNotification), object: nil, queue: mainQueue, using: { _ in
+            self.loadUserDataFromFileSystem()
         })
         
-        let observerForRefreshingGPS = notificationCenter.addObserver(forName: NSNotification.Name(rawValue: HelperMethods.newDataModelNotification), object: nil, queue: mainQueue, using: { _ in
-            if let location: CLLocation = self.currentLocation {
-                self.detectNearestSite(location)
-            }
+        _ = notificationCenter.addObserver(forName: NSNotification.Name(rawValue: HelperConsts.CommunicationManagerNewCoffeeFileNotification), object: nil, queue: mainQueue, using: { _ in
+            self.loadCoffeeDataFromFileSystem()
         })
-         */
+    }
+    
+    private func loadUserDataFromFileSystem() {
+        NSLog("loadUserDataFromFileSystem")
+    }
+    
+    private func loadCoffeeDataFromFileSystem() {
+        var newCoffeeDict: Dictionary<String, CoffeeType>?
+        
+        if let path = fileManager.loadFileFromDocuments(HelperConsts.coffeeJsonDataPathName) {
+            if let coffeeDataDict = fileManager.loadContentOfFileAtPath(path) {
+                newCoffeeDict = parseCoffeeData(coffeeData: coffeeDataDict)
+            }
+        }
+        
+        if newCoffeeDict != nil {
+            coffeeDict = newCoffeeDict!
+            notificationCenter.post(name: Notification.Name(rawValue: HelperConsts.DataManagerNewCoffeeDataNotification), object: nil)
+        }
+    }
+    
+    // private parse methods
+    private func parseCoffeeData(coffeeData: [Any]) -> Dictionary<String, CoffeeType>? {
+        var newCoffeeDict: Dictionary<String, CoffeeType>? = [String: CoffeeType]()
+        
+        coffeeData.forEach { itemO in
+            if let item = itemO as? Dictionary<String, AnyObject> {
+                let id: String? = item["coffee_id"] as? String
+                let color: String? = item["color"] as? String
+                let name: String? = item["name"] as? String
+                
+                // check not null
+                if id == nil
+                    || color == nil
+                    || name == nil {
+                    NSLog("could not parse coffee type object")
+                    newCoffeeDict = nil
+                }
+                
+                let coffee = CoffeeType.init(id: id!, name: name!, color: color!)
+                newCoffeeDict!.updateValue(coffee, forKey: id!)
+            }
+            
+        }
+        
+        return newCoffeeDict
     }
     
     func users() -> Dictionary<String, User> {
@@ -98,7 +148,6 @@ class DataManager: NSObject {
     func setSelectedUser(user: User) {
         selectedUserId = user.id
     }
-
     
     // return sites in a sorted array, change $0.name > $1.name to $0.name < $1.name to switch rule
     func usersSortedArray() -> Array<User> {

@@ -21,7 +21,11 @@ struct HelperConsts {
     static let showSummaryTableViewControllerSeque = "showSummaryTableViewControllerSeque"
 
     // notifications
-    static let DataManagerNewDataNotification = "DataManagerNewDataNotification"
+    static let DataManagerNewCoffeeDataNotification = "DataManagerNewCoffeeDataNotification"
+    static let DataManagerNewUserDataNotification = "DataManagerNewUserDataNotification"
+    
+    static let CommunicationManagerNewUserFileNotification = "CommunicationManagerNewUserFileNotification"
+    static let CommunicationManagerNewCoffeeFileNotification = "CommunicationManagerNewCoffeeFileNotification"
     
     // colors
     static let topBarBackgroundColor = HelperMethods.uicolorFromHex(0x2F445B)
@@ -29,4 +33,8 @@ struct HelperConsts {
     static let defaultColor = HelperMethods.uicolorFromHex(0x4D351D)
     static let divicerColor = HelperMethods.uicolorFromHex(0xBCB5B1)
     static let imageBorderColor = HelperConsts.defaultColor
+    
+    // data pahts
+    static let userJsonDataPathName = "user"
+    static let coffeeJsonDataPathName = "coffee"
 }

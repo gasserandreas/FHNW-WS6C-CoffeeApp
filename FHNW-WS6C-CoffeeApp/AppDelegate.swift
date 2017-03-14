@@ -26,6 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // start managers
         _ = DataManager.sharedInstance
         _ = ConfigManager.sharedInstance
+        _ = CommunicationManager.sharedInstance
         
         // set status bar styling
         //UIApplication.shared.setStatusBarStyle(UIStatusBarStyle.lightContent, animated: false)
