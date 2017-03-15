@@ -81,10 +81,6 @@ class DataManager: NSObject {
         })
     }
     
-    private func loadUserDataFromFileSystem() {
-        NSLog("loadUserDataFromFileSystem")
-    }
-    
     private func loadCoffeeDataFromFileSystem() {
         var newCoffeeDict: Dictionary<String, CoffeeType>?
         
@@ -97,6 +93,21 @@ class DataManager: NSObject {
         if newCoffeeDict != nil {
             coffeeDict = newCoffeeDict!
             notificationCenter.post(name: Notification.Name(rawValue: HelperConsts.DataManagerNewCoffeeDataNotification), object: nil)
+        }
+    }
+    
+    private func loadUserDataFromFileSystem() {
+        var newUserDict: Dictionary<String, User>?
+        
+        if let path = fileManager.loadFileFromDocuments(HelperConsts.userJsonDataPathName) {
+            if let userDataDict = fileManager.loadContentOfFileAtPath(path) {
+                newUserDict = parseUserData(userData: userDataDict)
+            }
+        }
+        
+        if newUserDict != nil {
+            usersDict = newUserDict!
+            notificationCenter.post(name: Notification.Name(rawValue: HelperConsts.DataManagerNewUserDataNotification), object: nil)
         }
     }
     
@@ -115,16 +126,58 @@ class DataManager: NSObject {
                     || color == nil
                     || name == nil {
                     NSLog("could not parse coffee type object")
-                    newCoffeeDict = nil
+                } else {
+                    let coffee = CoffeeType.init(id: id!, name: name!, color: color!)
+                    newCoffeeDict!.updateValue(coffee, forKey: id!)
                 }
-                
-                let coffee = CoffeeType.init(id: id!, name: name!, color: color!)
-                newCoffeeDict!.updateValue(coffee, forKey: id!)
             }
             
         }
         
         return newCoffeeDict
+    }
+    
+    private func parseUserData(userData: [Any]) -> Dictionary<String, User>? {
+        var newUserDict: Dictionary<String, User>? = [String: User]()
+        
+        userData.forEach { itemO in
+            if let item = itemO as? Dictionary<String, AnyObject> {
+                let id: String? = item["id"] as? String
+                let firstname: String? = item["firstname"] as? String
+                let name: String? = item["name"] as? String
+                let imageName: String? = item["imageName"] as? String
+                let coffeeRawArray: [AnyObject]? = item["coffees"] as? [AnyObject]
+                
+                // parse array
+                var coffees: Dictionary<String, Int> = [String: Int]()
+                
+                coffeeRawArray?.forEach { coffeeItemO in
+                    if let coffeeItem = coffeeItemO as? Dictionary<String, AnyObject> {
+                        let coffeeId: String? = coffeeItem["key"] as? String
+                        let value: String? = coffeeItem["value"] as? String
+                        
+                        if (coffeeId == nil || value == nil) {
+                            NSLog("could not parse coffee type object")
+                        } else {
+                            coffees.updateValue(Int(value!)!, forKey: coffeeId!)
+                        }
+                    }
+                }
+                
+                if id == nil ||
+                    firstname == nil ||
+                    name == nil ||
+                    imageName == nil {
+                    NSLog("could not parse user type object")
+                } else {
+                    let user = User.init(id: id!, name: name!, firstname: firstname!, imageName: imageName!, coffees: coffees)
+                    newUserDict!.updateValue(user, forKey: id!)
+                }
+            }
+            
+        }
+        
+        return newUserDict
     }
     
     func users() -> Dictionary<String, User> {

@@ -70,10 +70,6 @@ class FileManager {
         return createPathToFileName(filename)
     }
     
-    func loadFileFromBundle(_ filename: String) -> String? {
-        return Bundle.main.path(forResource: filename, ofType: dataType)
-    }
-    
     func loadContentOfFileAtPath(_ path: String) -> [Any]? {
         var returnValue: [Any]?
         var fileContent: String?
