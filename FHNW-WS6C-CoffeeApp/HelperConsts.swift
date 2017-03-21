@@ -11,6 +11,10 @@ import Foundation
 import QuartzCore
 
 struct HelperConsts {
+    
+    // testing flag
+    static let testing = true
+    
     // controller
 
     // segues
@@ -37,4 +41,17 @@ struct HelperConsts {
     // data pahts
     static let userJsonDataPathName = "user"
     static let coffeeJsonDataPathName = "coffee"
+    
+    // url
+    static let imageUrl = ""
+    
+    static let testServerUrl = "http://localhost:3001/"
+    static let prodServerUrl = "http://localhost:3001/"
+    
+    static let apiVersion = "V1/"
+    static let apiBase = "api/"
+    
+    static let userEndPoint = "users/"
+    static let imagesEndPoint = "images/"
+    static let coffeeEndPoint = "coffees/"
 }

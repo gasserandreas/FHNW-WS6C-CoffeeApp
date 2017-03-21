@@ -14,7 +14,6 @@
 		C83844B91E64807A00128033 /* CoffeeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83844B81E64807A00128033 /* CoffeeType.swift */; };
 		C83844BD1E648BC800128033 /* DataManagerInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83844BC1E648BC800128033 /* DataManagerInitializer.swift */; };
 		C89F56851E76F16000511668 /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C89F56841E76F16000511668 /* FileManager.swift */; };
-		C8B45D491E65D0F4006FC962 /* ConfigManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B45D481E65D0F4006FC962 /* ConfigManager.swift */; };
 		C8B45D4B1E662411006FC962 /* SelectUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B45D4A1E662411006FC962 /* SelectUserViewController.swift */; };
 		C8B45D4D1E662576006FC962 /* SelectUserTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B45D4C1E662576006FC962 /* SelectUserTableViewController.swift */; };
 		C8B45D501E6627ED006FC962 /* SelectUserTableViewControllerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B45D4F1E6627ED006FC962 /* SelectUserTableViewControllerCell.swift */; };
@@ -48,7 +47,6 @@
 		C83844B81E64807A00128033 /* CoffeeType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoffeeType.swift; sourceTree = "<group>"; };
 		C83844BC1E648BC800128033 /* DataManagerInitializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManagerInitializer.swift; sourceTree = "<group>"; };
 		C89F56841E76F16000511668 /* FileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
-		C8B45D481E65D0F4006FC962 /* ConfigManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigManager.swift; sourceTree = "<group>"; };
 		C8B45D4A1E662411006FC962 /* SelectUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectUserViewController.swift; sourceTree = "<group>"; };
 		C8B45D4C1E662576006FC962 /* SelectUserTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectUserTableViewController.swift; sourceTree = "<group>"; };
 		C8B45D4F1E6627ED006FC962 /* SelectUserTableViewControllerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectUserTableViewControllerCell.swift; sourceTree = "<group>"; };
@@ -124,7 +122,6 @@
 				C89F56841E76F16000511668 /* FileManager.swift */,
 				C83844B01E647EED00128033 /* DataManager.swift */,
 				C83844BC1E648BC800128033 /* DataManagerInitializer.swift */,
-				C8B45D481E65D0F4006FC962 /* ConfigManager.swift */,
 				C8E2B1F01E76E2E2001A9882 /* CommunicationManager.swift */,
 			);
 			name = Managers;
@@ -344,7 +341,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C8B45D491E65D0F4006FC962 /* ConfigManager.swift in Sources */,
 				C83844B91E64807A00128033 /* CoffeeType.swift in Sources */,
 				C8EF65DB1E70B78F00B5C8E2 /* CoffeeCapsuleView.swift in Sources */,
 				C89F56851E76F16000511668 /* FileManager.swift in Sources */,

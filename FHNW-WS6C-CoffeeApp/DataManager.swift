@@ -28,10 +28,12 @@ class DataManager: NSObject {
     
     // define private properties
     private var usersDict = [String: User]()
+    private var oldUsersDict = [String: User]()
+    
     private var coffeeDict = [String: CoffeeType]()
     
-    private lazy var configManager: ConfigManager = {
-        return ConfigManager.sharedInstance
+    private lazy var communicationManager: CommunicationManager = {
+        return CommunicationManager.sharedInstance
     }()
     
     private var fileManager: FileManager {
@@ -52,20 +54,10 @@ class DataManager: NSObject {
     
     override init() {
         super.init()
-        NSLog("uuii init DataManager")
         
         // load data
         loadCoffeeDataFromFileSystem()
-        
-        if configManager.testing {
-            // init basic values
-            //usersDict = DataManagerInitializer.initUsers()
-            coffeeDict = DataManagerInitializer.initCoffees()
-            
-            // inform observers
-            notificationCenter.post(name: Notification.Name(rawValue: HelperConsts.DataManagerNewUserDataNotification), object: nil)
-            //notificationCenter.post(name: Notification.Name(rawValue: HelperConsts.DataManagerNewCoffeeDataNotification), object: nil)
-        }
+        loadUserDataFromFileSystem()
         
         addObservers()
     }
@@ -106,10 +98,13 @@ class DataManager: NSObject {
         }
         
         if newUserDict != nil {
+            
+            // store new data and inform app
             usersDict = newUserDict!
             notificationCenter.post(name: Notification.Name(rawValue: HelperConsts.DataManagerNewUserDataNotification), object: nil)
         }
     }
+    
     
     // private parse methods
     private func parseCoffeeData(coffeeData: [Any]) -> Dictionary<String, CoffeeType>? {
@@ -117,7 +112,7 @@ class DataManager: NSObject {
         
         coffeeData.forEach { itemO in
             if let item = itemO as? Dictionary<String, AnyObject> {
-                let id: String? = item["coffee_id"] as? String
+                let id: String? = item["id"] as? String
                 let color: String? = item["color"] as? String
                 let name: String? = item["name"] as? String
                 
@@ -209,6 +204,22 @@ class DataManager: NSObject {
     
     func coffeeTypesSortedArray() -> Array<CoffeeType> {
         return HelperMethods.sortCoffeeTypeArray(Array(coffeeDict.values))
+    }
+    
+    func countUpCoffee(coffee: CoffeeType) {
+        if let user = selectedUser() {
+            communicationManager.countUpCoffee(user: user, coffee: coffee)
+        } else {
+            NSLog("No user selected")
+        }
+    }
+    
+    func countDownCoffee(coffee: CoffeeType) {
+        if let user = selectedUser() {
+            communicationManager.countDownCoffee(user: user, coffee: coffee)
+        } else {
+            NSLog("No user selected")
+        }
     }
     
 }

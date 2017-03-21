@@ -8,6 +8,7 @@
 
 import UIKit
 import Foundation
+import AlamofireImage
 
 class SelectUserTableViewControllerCell: UITableViewCell {
     
@@ -27,5 +28,9 @@ class SelectUserTableViewControllerCell: UITableViewCell {
     
     func setUser(user: User) {
         userNameLabel.text = "\(user.firstname) \(user.name)"
+        
+        // set image
+        let url = URL(string: HelperMethods.getImageEndPointString(imageName: user.imageName))!
+        userProfileImageView.af_setImage(withURL: url)
     }
 }

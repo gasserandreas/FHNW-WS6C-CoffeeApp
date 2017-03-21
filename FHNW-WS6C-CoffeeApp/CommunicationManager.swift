@@ -29,15 +29,15 @@ class CommunicationManager: NSObject {
         return CommunicationManagerStatic.instance!
     }
     
-    private var configManager: ConfigManager {
-        get {
-            return ConfigManager.sharedInstance
-        }
-    }
-    
     private var fileManager: FileManager {
         get {
             return FileManager.sharedInstance
+        }
+    }
+    
+    private var dataManager: DataManager {
+        get {
+            return DataManager.sharedInstance
         }
     }
     
@@ -50,14 +50,28 @@ class CommunicationManager: NSObject {
         super.init()
         getUsers()
         getCoffees()
-        NSLog("uuii init CommunicationManager")
     }
     
     // public funcs
+    func loadUsers() {
+        getUsers()
+    }
+    
+    func loadCoffees() {
+        getCoffees()
+    }
+    
+    func countUpCoffee(user: User, coffee: CoffeeType) {
+        postCountUpCoffee(user: user, coffee: coffee)
+    }
+    
+    func countDownCoffee(user: User, coffee: CoffeeType) {
+        postCountDownCoffee(user: user, coffee: coffee)
+    }
     
     // private funcs
     private func getUsers() {
-        Alamofire.request(configManager.getUserApiEndPointString()).responseData { response in
+        Alamofire.request(HelperMethods.getUserApiEndPointString()).responseData { response in
             // check if data was received
             if let JSONData = response.result.value {
                 // save data localy
@@ -70,7 +84,7 @@ class CommunicationManager: NSObject {
     }
     
     private func getCoffees() {
-        Alamofire.request(configManager.getCoffeeApiEndPointString()).responseData { response in
+        Alamofire.request(HelperMethods.getCoffeeApiEndPointString()).responseData { response in
             // check if data was received
             if let JSONData = response.result.value {
                 // save data localy
@@ -82,4 +96,19 @@ class CommunicationManager: NSObject {
         }
     }
     
+    private func postCountUpCoffee(user: User, coffee: CoffeeType) {
+        Alamofire.request(HelperMethods.postCountUpCoffee(user: user, coffee: coffee), method: .post, parameters: nil).responseString { response in
+            if let _ = response.result.value {
+                self.getUsers()
+            }
+        }
+    }
+    
+    private func postCountDownCoffee(user: User, coffee: CoffeeType) {
+        Alamofire.request(HelperMethods.postCountDownCoffee(user: user, coffee: coffee), method: .post, parameters: nil).responseString { response in
+            if let _ = response.result.value {
+                self.getUsers()
+            }
+        }
+    }
 }

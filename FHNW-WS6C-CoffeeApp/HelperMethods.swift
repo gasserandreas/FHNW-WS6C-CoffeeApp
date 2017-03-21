@@ -70,4 +70,35 @@ struct HelperMethods {
     static func sortCoffeeTypeArray(_ coffeeTypes: [CoffeeType]) -> Array<CoffeeType> {
         return coffeeTypes.sorted(by: { $0.name < $1.name })
     }
+    
+    static func getUserApiEndPointString() -> String {
+        return "\(getApiUrlString())\(HelperConsts.userEndPoint)"
+    }
+    
+    static func getCoffeeApiEndPointString() -> String {
+        return "\(getApiUrlString())\(HelperConsts.coffeeEndPoint)"
+    }
+    
+    static func getImageEndPointString(imageName: String) -> String {
+        return "\(getServerUrl())\(HelperConsts.imagesEndPoint)\(imageName).jpg"
+    }
+    
+    static func postCountUpCoffee(user: User, coffee: CoffeeType) -> String {
+        return "\(HelperMethods.getUserApiEndPointString())\(user.id)/countUpCoffee/\(coffee.id)"
+    }
+    
+    static func postCountDownCoffee(user: User, coffee: CoffeeType) -> String {
+        return "\(HelperMethods.getUserApiEndPointString())\(user.id)/countDownCoffee/\(coffee.id)"
+    }
+    
+    // private funcs
+    static func getServerUrl() -> String {
+        return HelperConsts.testing ? HelperConsts.testServerUrl : HelperConsts.prodServerUrl
+    }
+    
+    static func getApiUrlString() -> String {
+        let url = "\(getServerUrl())\(HelperConsts.apiBase)\(HelperConsts.apiVersion)"
+        return url
+    }
+
 }
