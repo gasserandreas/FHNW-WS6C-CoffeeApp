@@ -43,7 +43,12 @@ class SelectUserViewController: UIViewController, SelectUserTableViewControllerD
         let mainQueue = OperationQueue.main
         
         // new data
-        notificationCenter.addObserver(forName: NSNotification.Name(rawValue: HelperConsts.DataManagerNewDataNotification), object: nil, queue: mainQueue, using: { _ in
+        // new data
+        notificationCenter.addObserver(forName: NSNotification.Name(rawValue: HelperConsts.DataManagerNewUserDataNotification), object: nil, queue: mainQueue, using: { _ in
+            self.reloadView()
+        })
+        
+        notificationCenter.addObserver(forName: NSNotification.Name(rawValue: HelperConsts.DataManagerNewCoffeeDataNotification), object: nil, queue: mainQueue, using: { _ in
             self.reloadView()
         })
     }

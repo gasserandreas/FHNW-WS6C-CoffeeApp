@@ -9,14 +9,10 @@
 import UIKit
 import Foundation
 
-class CoffeeViewController: UIViewController, SelectUserViewControllerDelegate, SummaryViewControllerDelegate {
+class CoffeeViewController: UIViewController, SelectUserViewControllerDelegate, SummaryViewControllerDelegate, CoffeeTableViewControllerDelegate {
 
     lazy var dataManager: DataManager = {
         return DataManager.sharedInstance
-    }()
-    
-    lazy var configManager: ConfigManager = {
-        return ConfigManager.sharedInstance
     }()
     
     var selectedUser: User?
@@ -25,11 +21,12 @@ class CoffeeViewController: UIViewController, SelectUserViewControllerDelegate, 
     @IBOutlet weak var headingLabel: UILabel!
     @IBOutlet weak var userProfileImageView: UIImageView!
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        selectedUser = dataManager.selectedUser()
         initView()
         customLoadView()
+
     }
     
     func addObservers() {
@@ -37,7 +34,11 @@ class CoffeeViewController: UIViewController, SelectUserViewControllerDelegate, 
         let mainQueue = OperationQueue.main
         
         // new data
-        notificationCenter.addObserver(forName: NSNotification.Name(rawValue: HelperConsts.DataManagerNewDataNotification), object: nil, queue: mainQueue, using: { _ in
+        notificationCenter.addObserver(forName: NSNotification.Name(rawValue: HelperConsts.DataManagerNewUserDataNotification), object: nil, queue: mainQueue, using: { _ in
+            self.reloadView()
+        })
+        
+        notificationCenter.addObserver(forName: NSNotification.Name(rawValue: HelperConsts.DataManagerNewCoffeeDataNotification), object: nil, queue: mainQueue, using: { _ in
             self.reloadView()
         })
     }
@@ -54,7 +55,12 @@ class CoffeeViewController: UIViewController, SelectUserViewControllerDelegate, 
     }
     
     func customLoadView() {
-        
+        // set name
+        if let user = selectedUser {
+            let url = URL(string: HelperMethods.getImageEndPointString(imageName: user.imageName))!
+            NSLog("\(url)")
+            userProfileImageView.af_setImage(withURL: url)
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -63,6 +69,9 @@ class CoffeeViewController: UIViewController, SelectUserViewControllerDelegate, 
             destinationController.delegate = self
         } else if segue.identifier == HelperConsts.showSummaryViewControllerSeque {
             let destinationController: SummaryViewController = segue.destination as! SummaryViewController
+            destinationController.delegate = self
+        } else if segue.identifier == HelperConsts.showCoffeeTableViewControllerSeque {
+            let destinationController: CoffeeTableViewController = segue.destination as! CoffeeTableViewController
             destinationController.delegate = self
         }
 
@@ -80,12 +89,18 @@ class CoffeeViewController: UIViewController, SelectUserViewControllerDelegate, 
     }
     
     internal func summaryViewControllerDelegateDidSelectBack(_ controller: SummaryViewController) {
-        NSLog("summaryViewControllerDelegateDidSelectBack")
         _ = self.navigationController?.popToRootViewController(animated: true)
     }
     
+    internal func coffeeTableViewControllerDelegateCountUpCoffee(_ controller: CoffeeTableViewController, coffee: CoffeeType) {
+        dataManager.countUpCoffee(coffee: coffee)
+    }
+    
+    internal func coffeeTableViewControllerDelegateCountDownCoffee(_ controller: CoffeeTableViewController, coffee: CoffeeType) {
+        dataManager.countDownCoffee(coffee: coffee)
+    }
+    
     @IBAction func userDidSelectShowSelectUserViewController(sender: UIImageView) {
-        NSLog("userDidSelectShowSelectUserViewController")
         performSegue(withIdentifier: HelperConsts.showSelectUserViewControllerSeque, sender: self)
     }
 }

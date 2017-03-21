@@ -37,10 +37,10 @@ class DataManagerInitializer: NSObject {
         coffees.updateValue(5, forKey: coffeeType2.id)
         coffees.updateValue(6, forKey: coffeeType3.id)
         
-        let user1 = User.init(id: "1", name: "Gasser", firstname: "Andreas", imageName: "person-1", coffees: coffees)
-        let user2 = User.init(id: "2", name: "Lüpold", firstname: "Martin", imageName: "person-1", coffees: coffees)
-        let user3 = User.init(id: "3", name: "Langhard", firstname: "Matthias", imageName: "person-1", coffees: coffees)
-        let user4 = User.init(id: "4", name: "Koch", firstname: "Remo", imageName: "person-1", coffees: coffees)
+        let user1 = User.init(id: "1", name: "Gasser T", firstname: "Andreas", imageName: "person-1", coffees: coffees)
+        let user2 = User.init(id: "2", name: "Lüpold T", firstname: "Martin", imageName: "person-1", coffees: coffees)
+        let user3 = User.init(id: "3", name: "Langhard T", firstname: "Matthias", imageName: "person-1", coffees: coffees)
+        let user4 = User.init(id: "4", name: "Koch T", firstname: "Remo", imageName: "person-1", coffees: coffees)
         
         users.updateValue(user1, forKey: "\(user1.id)")
         users.updateValue(user2, forKey: "\(user2.id)")

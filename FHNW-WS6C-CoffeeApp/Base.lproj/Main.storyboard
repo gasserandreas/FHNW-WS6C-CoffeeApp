@@ -300,14 +300,15 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plus" translatesAutoresizingMaskIntoConstraints="NO" id="fSK-gV-8He">
+                                        <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plus" translatesAutoresizingMaskIntoConstraints="NO" id="fSK-gV-8He">
                                             <rect key="frame" x="272" y="42" width="21" height="25"/>
+                                            <gestureRecognizers/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="21" id="DWz-wJ-hoV"/>
                                                 <constraint firstAttribute="height" constant="25" id="XFr-7z-7DM"/>
                                             </constraints>
                                         </imageView>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="minus" translatesAutoresizingMaskIntoConstraints="NO" id="npA-Ks-hcc">
+                                        <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="minus" translatesAutoresizingMaskIntoConstraints="NO" id="npA-Ks-hcc">
                                             <rect key="frame" x="78" y="51" width="24" height="7"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="7" id="anS-o5-oX2"/>

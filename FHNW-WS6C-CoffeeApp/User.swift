@@ -14,7 +14,7 @@ class User: NSObject {
     let firstname: String
     let imageName: String
     var coffees: Dictionary<String, Int> = Dictionary()
-    
+  
     init(id: String, name: String, firstname: String, imageName: String) {
         self.id = id
         self.name = name

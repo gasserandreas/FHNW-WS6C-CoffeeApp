@@ -11,6 +11,10 @@ import Foundation
 import QuartzCore
 
 struct HelperConsts {
+    
+    // testing flag
+    static let testing = true
+    
     // controller
 
     // segues
@@ -21,7 +25,11 @@ struct HelperConsts {
     static let showSummaryTableViewControllerSeque = "showSummaryTableViewControllerSeque"
 
     // notifications
-    static let DataManagerNewDataNotification = "DataManagerNewDataNotification"
+    static let DataManagerNewCoffeeDataNotification = "DataManagerNewCoffeeDataNotification"
+    static let DataManagerNewUserDataNotification = "DataManagerNewUserDataNotification"
+    
+    static let CommunicationManagerNewUserFileNotification = "CommunicationManagerNewUserFileNotification"
+    static let CommunicationManagerNewCoffeeFileNotification = "CommunicationManagerNewCoffeeFileNotification"
     
     // colors
     static let topBarBackgroundColor = HelperMethods.uicolorFromHex(0x2F445B)
@@ -29,4 +37,21 @@ struct HelperConsts {
     static let defaultColor = HelperMethods.uicolorFromHex(0x4D351D)
     static let divicerColor = HelperMethods.uicolorFromHex(0xBCB5B1)
     static let imageBorderColor = HelperConsts.defaultColor
+    
+    // data pahts
+    static let userJsonDataPathName = "user"
+    static let coffeeJsonDataPathName = "coffee"
+    
+    // url
+    static let imageUrl = ""
+    
+    static let testServerUrl = "http://localhost:3001/"
+    static let prodServerUrl = "http://localhost:3001/"
+    
+    static let apiVersion = "V1/"
+    static let apiBase = "api/"
+    
+    static let userEndPoint = "users/"
+    static let imagesEndPoint = "images/"
+    static let coffeeEndPoint = "coffees/"
 }
