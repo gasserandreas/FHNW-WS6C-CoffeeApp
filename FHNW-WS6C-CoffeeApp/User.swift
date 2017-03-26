@@ -8,25 +8,54 @@
 
 import Foundation
 
-class User: NSObject {
-    let id: String
-    let name: String
-    let firstname: String
-    let imageName: String
-    var coffees: Dictionary<String, Int> = Dictionary()
+import Realm
+import RealmSwift
+import ObjectMapper
+import AlamofireObjectMapper
+
+class User: Object, Mappable {
+    dynamic var id: String = ""
+    dynamic var name: String = ""
+    dynamic var firstname: String = ""
+    dynamic var imageName: String = ""
+    var coffees = List<CoffeeObject>()
   
-    init(id: String, name: String, firstname: String, imageName: String) {
-        self.id = id
-        self.name = name
-        self.firstname = firstname
-        self.imageName = imageName
+    required convenience init?(map: Map) {
+        self.init()
     }
     
-    init(id: String, name: String, firstname: String, imageName: String, coffees: Dictionary<String, Int>) {
-        self.id = id
-        self.name = name
-        self.firstname = firstname
-        self.imageName = imageName
-        self.coffees = coffees
+    func mapping(map: Map) {
+        id          <- map["id"]
+        name        <- map["name"]
+        firstname   <- map["firstname"]
+        imageName   <- map["imageName"]
+        coffees     <- map["coffees"]
+    }
+    
+    override class func primaryKey() -> String? {
+        return "id"
     }
 }
+
+/*
+class CoffeeType: Object, Mappable {
+    dynamic var id: String = ""
+    dynamic var name: String = ""
+    dynamic var color: String = ""
+    
+    required convenience init?(map: Map) {
+        self.init()
+    }
+    
+    func mapping(map: Map) {
+        id      <- map["id"]
+        name    <- map["name"]
+        color   <- map["color"]
+    }
+    
+    override class func primaryKey() -> String? {
+        return "id"
+    }
+    
+}
+ */

@@ -54,9 +54,12 @@ class SummaryViewController: UIViewController, SelectUserTableViewControllerDele
     }
     
     func customLoadView() {
+        /*
         let totalCoffee = dataManager.usersSortedArray().map {(user) -> Int in
             return Array(user.coffees.values).reduce(0, +)
         }
+        */
+        let totalCoffee = 10
         totalCoffeeLabel.text = "Total \(totalCoffee)"
     }
     

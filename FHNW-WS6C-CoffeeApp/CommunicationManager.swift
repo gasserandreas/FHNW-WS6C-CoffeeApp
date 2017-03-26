@@ -9,6 +9,8 @@
 import Foundation
 
 import Alamofire
+import ObjectMapper
+import AlamofireObjectMapper
 
 // needed for singleton
 struct CommunicationManagerStatic {
@@ -48,17 +50,16 @@ class CommunicationManager: NSObject {
     
     override init() {
         super.init()
-        getUsers()
-        getCoffees()
+        //getUsers()
     }
     
     // public funcs
     func loadUsers() {
-        getUsers()
+        //getUsers()
     }
     
     func loadCoffees() {
-        getCoffees()
+        
     }
     
     func countUpCoffee(user: User, coffee: CoffeeType) {
@@ -69,37 +70,28 @@ class CommunicationManager: NSObject {
         postCountDownCoffee(user: user, coffee: coffee)
     }
     
-    // private funcs
-    private func getUsers() {
-        Alamofire.request(HelperMethods.getUserApiEndPointString()).responseData { response in
-            // check if data was received
-            if let JSONData = response.result.value {
-                // save data localy
-                self.fileManager.saveContentToDocumentsDirectory(JSONData, fileName: HelperConsts.userJsonDataPathName)
-                
-                // inform observers
-                self.notificationCenter.post(name: NSNotification.Name(rawValue: HelperConsts.CommunicationManagerNewUserFileNotification), object: nil)
-            }
+    func getUsers(completionHandler:@escaping ([User]) -> ()) {
+        Alamofire.request(HelperMethods.getUserApiEndPointString())
+            .responseArray{ (response: DataResponse<[User]>) in
+                if let userResponse = response.result.value {
+                    completionHandler(userResponse)
+                }
         }
     }
     
-    private func getCoffees() {
-        Alamofire.request(HelperMethods.getCoffeeApiEndPointString()).responseData { response in
-            // check if data was received
-            if let JSONData = response.result.value {
-                // save data localy
-                self.fileManager.saveContentToDocumentsDirectory(JSONData, fileName: HelperConsts.coffeeJsonDataPathName)
-                
-                // inform observers
-                self.notificationCenter.post(name: NSNotification.Name(rawValue: HelperConsts.CommunicationManagerNewCoffeeFileNotification), object: nil)
-            }
+    func getCoffees(completionHandler:@escaping ([CoffeeType]) -> ()) {
+        Alamofire.request(HelperMethods.getCoffeeApiEndPointString())
+            .responseArray{ (response: DataResponse<[CoffeeType]>) in
+                if let coffeeResponse = response.result.value {
+                    completionHandler(coffeeResponse)
+                }
         }
     }
     
     private func postCountUpCoffee(user: User, coffee: CoffeeType) {
         Alamofire.request(HelperMethods.postCountUpCoffee(user: user, coffee: coffee), method: .post, parameters: nil).responseString { response in
             if let _ = response.result.value {
-                self.getUsers()
+                //self.getUsers()
             }
         }
     }
@@ -107,7 +99,7 @@ class CommunicationManager: NSObject {
     private func postCountDownCoffee(user: User, coffee: CoffeeType) {
         Alamofire.request(HelperMethods.postCountDownCoffee(user: user, coffee: coffee), method: .post, parameters: nil).responseString { response in
             if let _ = response.result.value {
-                self.getUsers()
+                //self.getUsers()
             }
         }
     }
