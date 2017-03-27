@@ -50,24 +50,14 @@ class CommunicationManager: NSObject {
     
     override init() {
         super.init()
-        //getUsers()
     }
     
-    // public funcs
-    func loadUsers() {
-        //getUsers()
+    func countUpCoffee(completionHandler:@escaping (User) -> (), user: User, coffee: CoffeeType) {
+        postCountUpCoffee(completionHandler: completionHandler, user: user, coffee: coffee)
     }
     
-    func loadCoffees() {
-        
-    }
-    
-    func countUpCoffee(user: User, coffee: CoffeeType) {
-        postCountUpCoffee(user: user, coffee: coffee)
-    }
-    
-    func countDownCoffee(user: User, coffee: CoffeeType) {
-        postCountDownCoffee(user: user, coffee: coffee)
+    func countDownCoffee(completionHandler:@escaping (User) -> (), user: User, coffee: CoffeeType) {
+        postCountDownCoffee(completionHandler: completionHandler, user: user, coffee: coffee)
     }
     
     func getUsers(completionHandler:@escaping ([User]) -> ()) {
@@ -88,18 +78,18 @@ class CommunicationManager: NSObject {
         }
     }
     
-    private func postCountUpCoffee(user: User, coffee: CoffeeType) {
-        Alamofire.request(HelperMethods.postCountUpCoffee(user: user, coffee: coffee), method: .post, parameters: nil).responseString { response in
-            if let _ = response.result.value {
-                //self.getUsers()
+    private func postCountUpCoffee(completionHandler:@escaping (User) -> (), user: User, coffee: CoffeeType) {
+        Alamofire.request(HelperMethods.postCountUpCoffee(user: user, coffee: coffee), method: .post, parameters: nil).responseObject { (response: DataResponse<User>) in
+            if let user: User = response.result.value {
+                completionHandler(user)
             }
         }
     }
     
-    private func postCountDownCoffee(user: User, coffee: CoffeeType) {
-        Alamofire.request(HelperMethods.postCountDownCoffee(user: user, coffee: coffee), method: .post, parameters: nil).responseString { response in
-            if let _ = response.result.value {
-                //self.getUsers()
+    private func postCountDownCoffee(completionHandler:@escaping (User) -> (), user: User, coffee: CoffeeType) {
+        Alamofire.request(HelperMethods.postCountDownCoffee(user: user, coffee: coffee), method: .post, parameters: nil).responseObject { (response: DataResponse<User>) in
+            if let user: User = response.result.value {
+                completionHandler(user)
             }
         }
     }

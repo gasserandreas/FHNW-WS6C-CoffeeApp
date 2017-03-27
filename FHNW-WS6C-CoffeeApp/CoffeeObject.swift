@@ -15,6 +15,8 @@ import AlamofireObjectMapper
 
 class CoffeeObject: Object, Mappable {
     dynamic var id: String = ""
+    dynamic var _id: String = ""
+    dynamic var key: String = ""
     dynamic var value: String = ""
     
     required convenience init?(map: Map) {
@@ -23,6 +25,8 @@ class CoffeeObject: Object, Mappable {
     
     func mapping(map: Map) {
         id      <- map["id"]
+        _id      <- map["_id"]
+        key      <- map["key"]
         value    <- map["value"]
     }
     

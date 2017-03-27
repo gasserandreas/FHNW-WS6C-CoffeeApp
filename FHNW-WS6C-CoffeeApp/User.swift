@@ -36,26 +36,3 @@ class User: Object, Mappable {
         return "id"
     }
 }
-
-/*
-class CoffeeType: Object, Mappable {
-    dynamic var id: String = ""
-    dynamic var name: String = ""
-    dynamic var color: String = ""
-    
-    required convenience init?(map: Map) {
-        self.init()
-    }
-    
-    func mapping(map: Map) {
-        id      <- map["id"]
-        name    <- map["name"]
-        color   <- map["color"]
-    }
-    
-    override class func primaryKey() -> String? {
-        return "id"
-    }
-    
-}
- */

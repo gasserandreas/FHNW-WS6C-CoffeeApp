@@ -84,11 +84,14 @@ class DataManager: NSObject {
     }
     
     func selectedUser() -> User? {
+        if let userId = selectedUserId {
+            return realm.object(ofType: User.self, forPrimaryKey: userId)
+        }
         return nil
     }
     
     func setSelectedUser(user: User) {
-        
+        selectedUserId = user.id
     }
     
     // load data
@@ -102,15 +105,18 @@ class DataManager: NSObject {
     
     // data manipulation methods
     func countUpCoffee(coffee: CoffeeType) {
-        
+        if let selectedUser = selectedUser() {
+            communicationManager.countUpCoffee(completionHandler: self.saveUser, user: selectedUser, coffee: coffee)
+        }
     }
     
     func countDownCoffee(coffee: CoffeeType) {
-        
+        if let selectedUser = selectedUser() {
+            communicationManager.countDownCoffee(completionHandler: self.saveUser, user: selectedUser, coffee: coffee)
+        }
     }
     
     private func saveCoffees(coffees: [CoffeeType]) {
-        print(coffees)
         do {
             try realm.write {
                 for coffee in coffees {
@@ -124,12 +130,22 @@ class DataManager: NSObject {
     }
     
     private func saveUsers(users: [User]) {
-        print(users)
         do {
             try realm.write {
                 for user in users {
                     realm.add(user, update: true)
                 }
+            }
+            notificationCenter.post(name: Notification.Name(rawValue: HelperConsts.DataManagerNewUserDataNotification), object: nil)
+        } catch let error {
+            fatalError(error.localizedDescription)
+        }
+    }
+    
+    private func saveUser(user: User) {
+        do {
+            try realm.write {
+                realm.add(user, update: true)
             }
             notificationCenter.post(name: Notification.Name(rawValue: HelperConsts.DataManagerNewUserDataNotification), object: nil)
         } catch let error {

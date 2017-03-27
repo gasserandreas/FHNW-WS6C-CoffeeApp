@@ -20,7 +20,11 @@ class SummaryTableViewControllerCell: UITableViewCell {
     }
     
     func setUser(user: User) {
-        
+        var coffees = 0
+        for coffee in user.coffees {
+            coffees += Int(coffee.value)!
+        }
+        coffeeCounter.text = "\(coffees)"
         userName.text = "\(user.firstname) \(user.name)"
     }
 }
