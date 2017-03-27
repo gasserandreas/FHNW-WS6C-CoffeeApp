@@ -58,7 +58,6 @@ class CoffeeViewController: UIViewController, SelectUserViewControllerDelegate, 
         // set name
         if let user = selectedUser {
             let url = URL(string: HelperMethods.getImageEndPointString(imageName: user.imageName))!
-            NSLog("\(url)")
             userProfileImageView.af_setImage(withURL: url)
         }
     }

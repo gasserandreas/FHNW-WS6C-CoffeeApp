@@ -8,14 +8,28 @@
 
 import Foundation
 
-class CoffeeType: NSObject {
-    let id: String
-    let name: String
-    let color: String
+import Realm
+import RealmSwift
+import ObjectMapper
+import AlamofireObjectMapper
+
+class CoffeeType: Object, Mappable {
+    dynamic var id: String = ""
+    dynamic var name: String = ""
+    dynamic var color: String = ""
     
-    init(id: String, name: String, color: String) {
-        self.id = id
-        self.name = name
-        self.color = color
+    required convenience init?(map: Map) {
+        self.init()
     }
+    
+    func mapping(map: Map) {
+        id      <- map["id"]
+        name    <- map["name"]
+        color   <- map["color"]
+    }
+    
+    override class func primaryKey() -> String? {
+        return "id"
+    }
+    
 }

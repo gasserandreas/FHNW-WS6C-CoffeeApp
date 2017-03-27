@@ -7,12 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C80B0C181E86DA1000500FE6 /* CoffeeObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80B0C171E86DA1000500FE6 /* CoffeeObject.swift */; };
 		C83844AD1E647ED400128033 /* HelperMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83844AC1E647ED400128033 /* HelperMethods.swift */; };
 		C83844AF1E647EDB00128033 /* HelperConsts.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83844AE1E647EDB00128033 /* HelperConsts.swift */; };
 		C83844B11E647EED00128033 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83844B01E647EED00128033 /* DataManager.swift */; };
 		C83844B71E64807000128033 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83844B61E64807000128033 /* User.swift */; };
 		C83844B91E64807A00128033 /* CoffeeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83844B81E64807A00128033 /* CoffeeType.swift */; };
-		C83844BD1E648BC800128033 /* DataManagerInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83844BC1E648BC800128033 /* DataManagerInitializer.swift */; };
+		C8430FFF1E893FDA00B77ABE /* ListExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8430FFE1E893FDA00B77ABE /* ListExtensions.swift */; };
 		C89F56851E76F16000511668 /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C89F56841E76F16000511668 /* FileManager.swift */; };
 		C8B45D4B1E662411006FC962 /* SelectUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B45D4A1E662411006FC962 /* SelectUserViewController.swift */; };
 		C8B45D4D1E662576006FC962 /* SelectUserTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B45D4C1E662576006FC962 /* SelectUserTableViewController.swift */; };
@@ -40,12 +41,13 @@
 
 /* Begin PBXFileReference section */
 		413908E539B81B714915BD8F /* Pods-FHNW-WS6C-CoffeeApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FHNW-WS6C-CoffeeApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-FHNW-WS6C-CoffeeApp/Pods-FHNW-WS6C-CoffeeApp.release.xcconfig"; sourceTree = "<group>"; };
+		C80B0C171E86DA1000500FE6 /* CoffeeObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoffeeObject.swift; sourceTree = "<group>"; };
 		C83844AC1E647ED400128033 /* HelperMethods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelperMethods.swift; sourceTree = "<group>"; };
 		C83844AE1E647EDB00128033 /* HelperConsts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelperConsts.swift; sourceTree = "<group>"; };
 		C83844B01E647EED00128033 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		C83844B61E64807000128033 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		C83844B81E64807A00128033 /* CoffeeType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoffeeType.swift; sourceTree = "<group>"; };
-		C83844BC1E648BC800128033 /* DataManagerInitializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManagerInitializer.swift; sourceTree = "<group>"; };
+		C8430FFE1E893FDA00B77ABE /* ListExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListExtensions.swift; sourceTree = "<group>"; };
 		C89F56841E76F16000511668 /* FileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
 		C8B45D4A1E662411006FC962 /* SelectUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectUserViewController.swift; sourceTree = "<group>"; };
 		C8B45D4C1E662576006FC962 /* SelectUserTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectUserTableViewController.swift; sourceTree = "<group>"; };
@@ -121,7 +123,6 @@
 			children = (
 				C89F56841E76F16000511668 /* FileManager.swift */,
 				C83844B01E647EED00128033 /* DataManager.swift */,
-				C83844BC1E648BC800128033 /* DataManagerInitializer.swift */,
 				C8E2B1F01E76E2E2001A9882 /* CommunicationManager.swift */,
 			);
 			name = Managers;
@@ -132,6 +133,7 @@
 			children = (
 				C83844B61E64807000128033 /* User.swift */,
 				C83844B81E64807A00128033 /* CoffeeType.swift */,
+				C80B0C171E86DA1000500FE6 /* CoffeeObject.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -143,6 +145,7 @@
 				C83844AE1E647EDB00128033 /* HelperConsts.swift */,
 				C8EF65D71E70B75B00B5C8E2 /* CoffeeCapsule.swift */,
 				C8EF65DA1E70B78F00B5C8E2 /* CoffeeCapsuleView.swift */,
+				C8430FFE1E893FDA00B77ABE /* ListExtensions.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -344,11 +347,11 @@
 				C83844B91E64807A00128033 /* CoffeeType.swift in Sources */,
 				C8EF65DB1E70B78F00B5C8E2 /* CoffeeCapsuleView.swift in Sources */,
 				C89F56851E76F16000511668 /* FileManager.swift in Sources */,
+				C8430FFF1E893FDA00B77ABE /* ListExtensions.swift in Sources */,
 				C8EF65BF1E6F673B00B5C8E2 /* CoffeeTableViewController.swift in Sources */,
 				C83844B11E647EED00128033 /* DataManager.swift in Sources */,
 				C8EF65BD1E6F65F000B5C8E2 /* CoffeeViewController.swift in Sources */,
 				C8EF65FD1E73360E00B5C8E2 /* SummaryViewController.swift in Sources */,
-				C83844BD1E648BC800128033 /* DataManagerInitializer.swift in Sources */,
 				C83844AF1E647EDB00128033 /* HelperConsts.swift in Sources */,
 				C8EF65D81E70B75B00B5C8E2 /* CoffeeCapsule.swift in Sources */,
 				C8E2B1F11E76E2E2001A9882 /* CommunicationManager.swift in Sources */,
@@ -358,6 +361,7 @@
 				C8B45D501E6627ED006FC962 /* SelectUserTableViewControllerCell.swift in Sources */,
 				C8B45D4D1E662576006FC962 /* SelectUserTableViewController.swift in Sources */,
 				C8EF65C11E6F67C800B5C8E2 /* CoffeeTableViewControllerCell.swift in Sources */,
+				C80B0C181E86DA1000500FE6 /* CoffeeObject.swift in Sources */,
 				C8EF66011E7338BA00B5C8E2 /* SummaryTableViewControllerCell.swift in Sources */,
 				C8EF65FF1E73361D00B5C8E2 /* SummaryTableViewController.swift in Sources */,
 				C83844AD1E647ED400128033 /* HelperMethods.swift in Sources */,

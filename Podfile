@@ -11,4 +11,5 @@ target 'FHNW-WS6C-CoffeeApp' do
   pod 'ObjectMapper', '~> 2.2'
   pod 'AlamofireObjectMapper', '~> 4.0'
   pod 'AlamofireImage', '~> 3.1'
+  pod 'RealmSwift'
 end
