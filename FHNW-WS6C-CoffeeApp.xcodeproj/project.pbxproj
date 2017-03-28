@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C80626DB1E8A427300B0C363 /* SwipeInteractionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80626DA1E8A427300B0C363 /* SwipeInteractionController.swift */; };
 		C80B0C181E86DA1000500FE6 /* CoffeeObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80B0C171E86DA1000500FE6 /* CoffeeObject.swift */; };
 		C83844AD1E647ED400128033 /* HelperMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83844AC1E647ED400128033 /* HelperMethods.swift */; };
 		C83844AF1E647EDB00128033 /* HelperConsts.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83844AE1E647EDB00128033 /* HelperConsts.swift */; };
@@ -41,6 +42,7 @@
 
 /* Begin PBXFileReference section */
 		413908E539B81B714915BD8F /* Pods-FHNW-WS6C-CoffeeApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FHNW-WS6C-CoffeeApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-FHNW-WS6C-CoffeeApp/Pods-FHNW-WS6C-CoffeeApp.release.xcconfig"; sourceTree = "<group>"; };
+		C80626DA1E8A427300B0C363 /* SwipeInteractionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipeInteractionController.swift; sourceTree = "<group>"; };
 		C80B0C171E86DA1000500FE6 /* CoffeeObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoffeeObject.swift; sourceTree = "<group>"; };
 		C83844AC1E647ED400128033 /* HelperMethods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelperMethods.swift; sourceTree = "<group>"; };
 		C83844AE1E647EDB00128033 /* HelperConsts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelperConsts.swift; sourceTree = "<group>"; };
@@ -105,15 +107,40 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		C83844A81E647DEC00128033 /* ViewControllers */ = {
+		C80626D71E8A422800B0C363 /* SelectUserView */ = {
 			isa = PBXGroup;
 			children = (
 				C8B45D4A1E662411006FC962 /* SelectUserViewController.swift */,
 				C8B45D4C1E662576006FC962 /* SelectUserTableViewController.swift */,
+			);
+			name = SelectUserView;
+			sourceTree = "<group>";
+		};
+		C80626D81E8A424000B0C363 /* CoffeeView */ = {
+			isa = PBXGroup;
+			children = (
 				C8EF65BC1E6F65F000B5C8E2 /* CoffeeViewController.swift */,
 				C8EF65BE1E6F673B00B5C8E2 /* CoffeeTableViewController.swift */,
+			);
+			name = CoffeeView;
+			sourceTree = "<group>";
+		};
+		C80626D91E8A425700B0C363 /* SummaryView */ = {
+			isa = PBXGroup;
+			children = (
 				C8EF65FC1E73360E00B5C8E2 /* SummaryViewController.swift */,
 				C8EF65FE1E73361D00B5C8E2 /* SummaryTableViewController.swift */,
+			);
+			name = SummaryView;
+			sourceTree = "<group>";
+		};
+		C83844A81E647DEC00128033 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				C80626D71E8A422800B0C363 /* SelectUserView */,
+				C80626D81E8A424000B0C363 /* CoffeeView */,
+				C80626D91E8A425700B0C363 /* SummaryView */,
+				C80626DA1E8A427300B0C363 /* SwipeInteractionController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -364,6 +391,7 @@
 				C80B0C181E86DA1000500FE6 /* CoffeeObject.swift in Sources */,
 				C8EF66011E7338BA00B5C8E2 /* SummaryTableViewControllerCell.swift in Sources */,
 				C8EF65FF1E73361D00B5C8E2 /* SummaryTableViewController.swift in Sources */,
+				C80626DB1E8A427300B0C363 /* SwipeInteractionController.swift in Sources */,
 				C83844AD1E647ED400128033 /* HelperMethods.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
