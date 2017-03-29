@@ -100,5 +100,4 @@ struct HelperMethods {
         let url = "\(getServerUrl())\(HelperConsts.apiBase)\(HelperConsts.apiVersion)"
         return url
     }
-
 }

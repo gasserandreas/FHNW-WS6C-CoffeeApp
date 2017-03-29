@@ -9,17 +9,11 @@
 import UIKit
 import Foundation
 
-protocol SummaryViewControllerDelegate {
-    func summaryViewControllerDelegateDidSelectBack(_ controller: SummaryViewController)
-}
-
-class SummaryViewController: UIViewController, SelectUserTableViewControllerDelegate {
+class SummaryViewController: UIViewController {
     
     lazy var dataManager: DataManager = {
         return DataManager.sharedInstance
     }()
-    
-    var delegate: CoffeeViewController?
     
     @IBOutlet weak var headingLabel: UILabel!
     @IBOutlet weak var totalCoffeeLabel: UILabel!
@@ -37,7 +31,7 @@ class SummaryViewController: UIViewController, SelectUserTableViewControllerDele
         let mainQueue = OperationQueue.main
         
         // new data
-        notificationCenter.addObserver(forName: NSNotification.Name(rawValue: HelperConsts.DataManagerNewUserDataNotification), object: nil, queue: mainQueue, using: { _ in
+        notificationCenter.addObserver(forName: NSNotification.Name(rawValue: Consts.Notification.DataManagerNewUserData.rawValue), object: nil, queue: mainQueue, using: { _ in
             self.reloadView()
         })
     }
@@ -45,12 +39,15 @@ class SummaryViewController: UIViewController, SelectUserTableViewControllerDele
     // init view
     func initView() {
         // set background color
-        view.backgroundColor = HelperConsts.backgroundColor
-        coffeeCapsuleView.backgroundColor = HelperConsts.backgroundColor
+        view.backgroundColor = UIColor.Theme.BackgroundColor
+        coffeeCapsuleView.backgroundColor = UIColor.Theme.BackgroundColor
         
         // set color and fonts
-        headingLabel.textColor = HelperConsts.defaultColor
-        totalCoffeeLabel.textColor = HelperConsts.defaultColor
+        headingLabel.font = UIFont.Theme.HeaderTextFont
+        headingLabel.textColor = UIColor.Theme.TextColor
+        
+        totalCoffeeLabel.font = UIFont.Theme.DefaultTextFontBold
+        totalCoffeeLabel.textColor = UIColor.Theme.TextColor
     }
     
     func customLoadView() {
@@ -69,21 +66,8 @@ class SummaryViewController: UIViewController, SelectUserTableViewControllerDele
         customLoadView()
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == HelperConsts.showSummaryTableViewControllerSeque {
-            let destinationController: SummaryTableViewController = segue.destination as! SummaryTableViewController
-//            destinationController.delegate = self
-        }
-    }
-    
-    
-    // MainTableViewControllerDelegate delegate methods
-    func selectUserTableViewControllerDelegateDidSelectUser(_ controller: SelectUserTableViewController, user: User) {
-        delegate!.summaryViewControllerDelegateDidSelectBack(self)
-    }
-    
     @IBAction func userDidSelectBackButton(sender: UILabel) {
-        delegate!.summaryViewControllerDelegateDidSelectBack(self)
+        performSegue(withIdentifier: Consts.Seques.UnwindToCoffeeViewController.rawValue, sender: self)
     }
     
 }

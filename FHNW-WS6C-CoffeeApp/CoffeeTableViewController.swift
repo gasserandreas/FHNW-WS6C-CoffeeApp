@@ -9,22 +9,13 @@
 import UIKit
 import Foundation
 
-protocol CoffeeTableViewControllerDelegate {
-    func coffeeTableViewControllerDelegateCountUpCoffee(_ controller: CoffeeTableViewController, coffee: CoffeeType)
-    func coffeeTableViewControllerDelegateCountDownCoffee(_ controller: CoffeeTableViewController, coffee: CoffeeType)
-//    func mainTableViewControllerDelegateDidSelectUser(_ controller: MainTableViewController, user: User)
-//    func mainTableViewControllerDelegateDidSelectCountUpCoffee(_ controller: MainTableViewController, user: User, coffee: CoffeeType)
-}
-
-class CoffeeTableViewController: UITableViewController, CoffeeTableViewControllerCellDelegate {
+class CoffeeTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = HelperConsts.backgroundColor
+        view.backgroundColor = UIColor.Theme.BackgroundColor
         addObservers()
     }
-    
-    var delegate: CoffeeViewController?
     
     lazy var dataManager: DataManager = {
         return DataManager.sharedInstance
@@ -35,7 +26,7 @@ class CoffeeTableViewController: UITableViewController, CoffeeTableViewControlle
         let mainQueue = OperationQueue.main
         
         // new data
-        notificationCenter.addObserver(forName: NSNotification.Name(rawValue: HelperConsts.DataManagerNewCoffeeDataNotification), object: nil, queue: mainQueue, using: { _ in
+        notificationCenter.addObserver(forName: NSNotification.Name(rawValue: Consts.Notification.DataManagerNewCoffeeData.rawValue), object: nil, queue: mainQueue, using: { _ in
             self.tableView.reloadData()
         })
     }
@@ -56,7 +47,6 @@ class CoffeeTableViewController: UITableViewController, CoffeeTableViewControlle
         let coffeeType = coffeeTypes[indexPath.row]
         
         // set table view
-        cell.delegate = self
         cell.setCoffeeType(coffeeType: coffeeType)
         cell.setView()
         
@@ -68,16 +58,6 @@ class CoffeeTableViewController: UITableViewController, CoffeeTableViewControlle
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 140
-    }
-    
-    // CoffeeTableViewControllerCellDelegate methods
-    func coffeeTableViewControllerCellDelegateCoffeeCountUp(_ cell:CoffeeTableViewControllerCell, coffee: CoffeeType) {
-        delegate!.coffeeTableViewControllerDelegateCountUpCoffee(self, coffee: coffee)
-    }
-    
-    func coffeeTableViewControllerCellDelegateCoffeeCountDown(_ cell:CoffeeTableViewControllerCell, coffee: CoffeeType) {
-        delegate!.coffeeTableViewControllerDelegateCountDownCoffee(self, coffee: coffee)
-    }
-    
+        return 155
+    }    
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Iv7-fn-0tW">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AmF-ro-Hdq">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -15,6 +15,9 @@
         </array>
         <array key="SF-UI-Text-Medium.otf">
             <string>SFUIText-Medium</string>
+        </array>
+        <array key="SF-UI-Text-Regular.otf">
+            <string>SFUIText-Regular</string>
         </array>
         <array key="SlaboRegular.ttf">
             <string>Slabo13px-Regular</string>
@@ -135,13 +138,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person-1" translatesAutoresizingMaskIntoConstraints="NO" id="cbh-Fo-7Dv">
-                                <rect key="frame" x="112" y="91" width="150" height="150"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="150" id="Its-T8-fwU"/>
-                                    <constraint firstAttribute="height" constant="150" id="L72-9k-YtG"/>
-                                </constraints>
-                            </imageView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oay-LG-ZZu">
                                 <rect key="frame" x="0.0" y="271" width="375" height="396"/>
                                 <connections>
@@ -170,10 +166,21 @@
                                     <outletCollection property="gestureRecognizers" destination="GEt-tC-04K" appends="YES" id="Mec-Ko-1RU"/>
                                 </connections>
                             </imageView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="m0a-c1-4Qg">
+                                <rect key="frame" x="113" y="91" width="150" height="150"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person-1" translatesAutoresizingMaskIntoConstraints="NO" id="tSt-hI-xyT" userLabel="UserProfileImageView">
+                                <rect key="frame" x="112.5" y="91" width="150" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="ANS-kv-xF4"/>
+                                    <constraint firstAttribute="height" constant="150" id="EGX-l7-QvZ"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="cbh-Fo-7Dv" firstAttribute="top" secondItem="6EV-pg-iXF" secondAttribute="bottom" constant="30" id="2sM-7H-CHx"/>
                             <constraint firstItem="6EV-pg-iXF" firstAttribute="centerX" secondItem="6aW-8E-1z1" secondAttribute="centerX" id="7TY-Hf-roY"/>
                             <constraint firstAttribute="trailing" secondItem="Oay-LG-ZZu" secondAttribute="trailing" id="E9Q-7G-lhx"/>
                             <constraint firstItem="6EV-pg-iXF" firstAttribute="top" secondItem="Q46-cg-YOM" secondAttribute="bottom" constant="15" id="JHj-LF-EEZ"/>
@@ -181,40 +188,42 @@
                             <constraint firstItem="nmu-rh-9AA" firstAttribute="trailing" secondItem="6aW-8E-1z1" secondAttribute="trailingMargin" id="MDd-j3-290"/>
                             <constraint firstItem="DGe-tP-ydd" firstAttribute="top" secondItem="Oay-LG-ZZu" secondAttribute="bottom" id="NRT-sb-7Za"/>
                             <constraint firstItem="6EV-pg-iXF" firstAttribute="centerY" secondItem="r1J-ZV-C1k" secondAttribute="centerY" id="Njo-fU-YrQ"/>
-                            <constraint firstItem="Oay-LG-ZZu" firstAttribute="top" secondItem="cbh-Fo-7Dv" secondAttribute="bottom" constant="30" id="PZt-ay-avy"/>
+                            <constraint firstItem="Oay-LG-ZZu" firstAttribute="top" secondItem="tSt-hI-xyT" secondAttribute="bottom" constant="30" id="bt1-gc-dU5"/>
+                            <constraint firstItem="tSt-hI-xyT" firstAttribute="centerX" secondItem="6aW-8E-1z1" secondAttribute="centerX" id="ceX-I6-Uiz"/>
                             <constraint firstItem="Oay-LG-ZZu" firstAttribute="leading" secondItem="6aW-8E-1z1" secondAttribute="leading" id="dNM-hs-x4l"/>
                             <constraint firstItem="r1J-ZV-C1k" firstAttribute="leading" secondItem="6aW-8E-1z1" secondAttribute="leadingMargin" id="hPF-1B-kjB"/>
-                            <constraint firstItem="cbh-Fo-7Dv" firstAttribute="centerX" secondItem="6aW-8E-1z1" secondAttribute="centerX" id="yDY-9v-7HJ"/>
+                            <constraint firstItem="tSt-hI-xyT" firstAttribute="top" secondItem="6EV-pg-iXF" secondAttribute="bottom" constant="30" id="iVf-LO-S7d"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="hNg-D4-pHW"/>
                     <connections>
                         <outlet property="backImageView" destination="r1J-ZV-C1k" id="Zrq-EN-Uz6"/>
                         <outlet property="headingLabel" destination="6EV-pg-iXF" id="65K-NT-qgi"/>
-                        <outlet property="userProfileImageView" destination="cbh-Fo-7Dv" id="R5S-qm-t5R"/>
-                        <segue destination="dXE-7G-VuX" kind="show" identifier="showSelectUserViewControllerSeque" id="UkP-4m-3YS"/>
+                        <outlet property="userProfileImageView" destination="tSt-hI-xyT" id="Ynf-F5-pRH"/>
+                        <outlet property="userProfileShadowView" destination="m0a-c1-4Qg" id="NuM-Yg-gmx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nan-9M-4nG" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="vLe-nM-xu6" userLabel="BackButtonTapGestureRegognizer">
                     <connections>
                         <action selector="userDidSelectShowSelectUserViewControllerWithSender:" destination="AmF-ro-Hdq" id="Q9V-aF-t1J"/>
+                        <segue destination="dXE-7G-VuX" kind="show" identifier="showSelectUserViewControllerSeque" id="L7Z-ct-had"/>
                     </connections>
                 </tapGestureRecognizer>
                 <tapGestureRecognizer id="GEt-tC-04K" userLabel="InfoButtonTapGestureRegognizer">
                     <connections>
-                        <segue destination="Pxp-Cj-vFr" kind="show" identifier="showSummaryViewControllerSeque" id="308-Jn-fq8"/>
+                        <segue destination="Pxp-Cj-vFr" kind="show" identifier="showSummaryViewControllerSeque" id="jx0-tY-aWn"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-66" y="-468"/>
+            <point key="canvasLocation" x="-66.400000000000006" y="-468.21589205397305"/>
         </scene>
         <!--Select User Table View Controller-->
         <scene sceneID="6kw-rn-kJU">
             <objects>
                 <tableViewController id="7Q1-Wf-u9A" customClass="SelectUserTableViewController" customModule="FHNW_WS6C_CoffeeApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="ANw-Yj-cFD">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="491"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -225,6 +234,14 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="159"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
+                                        <view contentMode="scaleToFill" restorationIdentifier="ImageViewRestorationId" translatesAutoresizingMaskIntoConstraints="NO" id="lKM-oY-7g3" userLabel="UserProfile Image Shadow">
+                                            <rect key="frame" x="138" y="10" width="100" height="100"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="100" id="7Xh-Bs-XKv"/>
+                                                <constraint firstAttribute="width" constant="100" id="WHe-r0-JlV"/>
+                                            </constraints>
+                                        </view>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person-1" translatesAutoresizingMaskIntoConstraints="NO" id="fi8-rf-AH0">
                                             <rect key="frame" x="138" y="10" width="100" height="100"/>
                                             <constraints>
@@ -244,15 +261,18 @@
                                         </label>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstItem="lKM-oY-7g3" firstAttribute="centerX" secondItem="jth-Lm-YH2" secondAttribute="centerX" id="0cQ-8C-YKL"/>
                                         <constraint firstItem="fi8-rf-AH0" firstAttribute="centerX" secondItem="jth-Lm-YH2" secondAttribute="centerX" id="OAk-0M-CyO"/>
                                         <constraint firstItem="j7E-md-t3P" firstAttribute="top" secondItem="fi8-rf-AH0" secondAttribute="bottom" constant="15" id="YAu-u2-Zfp"/>
                                         <constraint firstItem="j7E-md-t3P" firstAttribute="centerX" secondItem="jth-Lm-YH2" secondAttribute="centerX" id="fig-je-pMo"/>
                                         <constraint firstItem="fi8-rf-AH0" firstAttribute="top" secondItem="jth-Lm-YH2" secondAttribute="topMargin" constant="2" id="g7h-kQ-fbX"/>
+                                        <constraint firstItem="lKM-oY-7g3" firstAttribute="top" secondItem="jth-Lm-YH2" secondAttribute="topMargin" constant="2" id="uy3-xO-ahK"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="userNameLabel" destination="j7E-md-t3P" id="v6N-x4-Phk"/>
                                     <outlet property="userProfileImageView" destination="fi8-rf-AH0" id="4Gt-EX-w1g"/>
+                                    <outlet property="userProfileShadowView" destination="lKM-oY-7g3" id="kIO-QT-bOg"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -261,10 +281,14 @@
                             <outlet property="delegate" destination="7Q1-Wf-u9A" id="jVG-XF-cbV"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <segue destination="URs-z5-asC" kind="unwind" identifier="unwindToCoffeeViewControllerSeque" unwindAction="unwindToCoffeeViewControllerWithSegue:" id="YSc-aU-Sll"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lgk-Jm-dS3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="URs-z5-asC" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="914" y="-1220"/>
+            <point key="canvasLocation" x="912.79999999999995" y="-1220.2398800599701"/>
         </scene>
         <!--Coffee Table View Controller-->
         <scene sceneID="j8L-2r-iDT">
@@ -275,23 +299,23 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="CoffeeTableViewControllerCell" rowHeight="140" id="DP0-M0-m2L" customClass="CoffeeTableViewControllerCell" customModule="FHNW_WS6C_CoffeeApp" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="140"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="CoffeeTableViewControllerCell" rowHeight="155" id="DP0-M0-m2L" customClass="CoffeeTableViewControllerCell" customModule="FHNW_WS6C_CoffeeApp" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="155"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DP0-M0-m2L" id="8kN-aP-vfY">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="139"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="154"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CU9-pY-bwf" customClass="CoffeeCapsuleView" customModule="FHNW_WS6C_CoffeeApp" customModuleProvider="target">
-                                            <rect key="frame" x="152" y="20" width="70" height="70"/>
+                                            <rect key="frame" x="142.5" y="15" width="90" height="90"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="70" id="UZt-8o-rtN"/>
-                                                <constraint firstAttribute="width" constant="70" id="jvX-Mw-GOi"/>
+                                                <constraint firstAttribute="height" constant="90" id="UZt-8o-rtN"/>
+                                                <constraint firstAttribute="width" constant="90" id="jvX-Mw-GOi"/>
                                             </constraints>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Arpeccio" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qMS-Ki-tXN">
-                                            <rect key="frame" x="57.5" y="105" width="260" height="21"/>
+                                            <rect key="frame" x="57.5" y="120" width="260" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="K2S-fY-dov"/>
                                                 <constraint firstAttribute="width" constant="260" id="qG8-zB-WUw"/>
@@ -301,27 +325,39 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plus" translatesAutoresizingMaskIntoConstraints="NO" id="fSK-gV-8He">
-                                            <rect key="frame" x="272" y="42" width="21" height="25"/>
+                                            <rect key="frame" x="282.5" y="47.5" width="25" height="25"/>
                                             <gestureRecognizers/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="21" id="DWz-wJ-hoV"/>
+                                                <constraint firstAttribute="width" constant="25" id="DWz-wJ-hoV"/>
                                                 <constraint firstAttribute="height" constant="25" id="XFr-7z-7DM"/>
                                             </constraints>
                                         </imageView>
                                         <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="minus" translatesAutoresizingMaskIntoConstraints="NO" id="npA-Ks-hcc">
-                                            <rect key="frame" x="78" y="51" width="24" height="7"/>
+                                            <rect key="frame" x="66.5" y="56.5" width="26" height="7"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="7" id="anS-o5-oX2"/>
-                                                <constraint firstAttribute="width" constant="24" id="qSx-e8-uUq"/>
+                                                <constraint firstAttribute="width" constant="26" id="qSx-e8-uUq"/>
                                             </constraints>
                                         </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="42" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bit-3Q-ci1" userLabel="Coffee Counter">
+                                            <rect key="frame" x="162" y="63" width="50" height="20"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="50" id="3L9-Ko-KLq"/>
+                                                <constraint firstAttribute="height" constant="20" id="R8i-k5-K2f"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="16"/>
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="qMS-Ki-tXN" firstAttribute="top" secondItem="CU9-pY-bwf" secondAttribute="bottom" constant="15" id="FFX-tJ-C7A"/>
                                         <constraint firstItem="CU9-pY-bwf" firstAttribute="centerX" secondItem="8kN-aP-vfY" secondAttribute="centerX" id="KXD-8e-aCU"/>
+                                        <constraint firstItem="bit-3Q-ci1" firstAttribute="centerX" secondItem="CU9-pY-bwf" secondAttribute="centerX" id="Koy-eg-enH"/>
                                         <constraint firstItem="CU9-pY-bwf" firstAttribute="centerY" secondItem="npA-Ks-hcc" secondAttribute="centerY" id="Mvs-A3-hGm"/>
+                                        <constraint firstItem="bit-3Q-ci1" firstAttribute="top" secondItem="8kN-aP-vfY" secondAttribute="topMargin" constant="55" id="OM7-ol-sUj"/>
                                         <constraint firstItem="CU9-pY-bwf" firstAttribute="leading" secondItem="npA-Ks-hcc" secondAttribute="trailing" constant="50" id="Oyc-Rq-cw3"/>
-                                        <constraint firstItem="CU9-pY-bwf" firstAttribute="top" secondItem="8kN-aP-vfY" secondAttribute="topMargin" constant="12" id="P79-U6-Nbi"/>
+                                        <constraint firstItem="CU9-pY-bwf" firstAttribute="top" secondItem="8kN-aP-vfY" secondAttribute="topMargin" constant="7" id="P79-U6-Nbi"/>
                                         <constraint firstItem="fSK-gV-8He" firstAttribute="centerY" secondItem="npA-Ks-hcc" secondAttribute="centerY" id="abS-0b-Cjx"/>
                                         <constraint firstItem="fSK-gV-8He" firstAttribute="leading" secondItem="CU9-pY-bwf" secondAttribute="trailing" constant="50" id="bM9-eb-7Om"/>
                                         <constraint firstItem="qMS-Ki-tXN" firstAttribute="centerX" secondItem="8kN-aP-vfY" secondAttribute="centerX" id="scy-BK-WND"/>
@@ -329,7 +365,8 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="coffeeCapsuleView" destination="CU9-pY-bwf" id="HUs-1M-Syv"/>
-                                    <outlet property="coffeeTypeName" destination="qMS-Ki-tXN" id="vtl-rk-cHs"/>
+                                    <outlet property="coffeeCounterLabel" destination="bit-3Q-ci1" id="Pm1-6Q-LGP"/>
+                                    <outlet property="coffeeTypeNameLabel" destination="qMS-Ki-tXN" id="Wdd-jJ-qAm"/>
                                     <outlet property="countDownCoffeeView" destination="npA-Ks-hcc" id="4l2-UD-iov"/>
                                     <outlet property="countUpCoffeeView" destination="fSK-gV-8He" id="L7x-Hb-u3j"/>
                                 </connections>
@@ -343,27 +380,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1fE-kg-jyl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="913" y="-443"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="Fsg-1B-Cmg">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="Iv7-fn-0tW" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <nil key="simulatedTopBarMetrics"/>
-                    <nil key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="iwg-hs-WFm">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="AmF-ro-Hdq" kind="relationship" relationship="rootViewController" id="TSU-vR-ttM"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="5x6-W9-LO1" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1087" y="-468"/>
+            <point key="canvasLocation" x="913" y="-444"/>
         </scene>
         <!--Summary View Controller-->
         <scene sceneID="T8o-Vw-bqR">
@@ -377,7 +394,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ADD COFFEE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HGr-Ly-Jbn">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Show Details" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HGr-Ly-Jbn">
                                 <rect key="frame" x="57" y="35" width="260" height="26"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="260" id="Xdx-Jm-64O"/>
@@ -394,7 +411,7 @@
                                 </connections>
                             </containerView>
                             <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Back Button" translatesAutoresizingMaskIntoConstraints="NO" id="38t-rS-oOJ">
-                                <rect key="frame" x="16" y="36" width="15" height="25"/>
+                                <rect key="frame" x="16" y="35.5" width="15" height="25"/>
                                 <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="15" id="sAJ-jo-Roz"/>
@@ -446,9 +463,11 @@
                         <outlet property="coffeeCapsuleView" destination="Sbm-3G-XtY" id="y5W-yI-qjL"/>
                         <outlet property="headingLabel" destination="HGr-Ly-Jbn" id="Sqc-fn-qAV"/>
                         <outlet property="totalCoffeeLabel" destination="Ufs-zT-mri" id="Eel-vz-p7P"/>
+                        <segue destination="X9m-Fl-DsK" kind="unwind" identifier="unwindToCoffeeViewControllerSeque" unwindAction="unwindToCoffeeViewControllerWithSegue:" id="6yG-bg-AsJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EcN-Ug-MTg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="X9m-Fl-DsK" userLabel="Exit" sceneMemberID="exit"/>
                 <tapGestureRecognizer id="9hO-lu-raJ" userLabel="BackButtonTapGestureRegognizer">
                     <connections>
                         <action selector="userDidSelectBackButtonWithSender:" destination="Pxp-Cj-vFr" id="gpr-hg-3kr"/>
@@ -502,8 +521,8 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="coffeeCounter" destination="tr7-6c-xBY" id="BMR-Om-CUt"/>
-                                    <outlet property="userName" destination="2hw-Lt-sv7" id="ZTF-U0-JFz"/>
+                                    <outlet property="coffeeCounterLabel" destination="tr7-6c-xBY" id="NV9-kR-aSX"/>
+                                    <outlet property="userNameLabel" destination="2hw-Lt-sv7" id="jTx-qC-tSQ"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

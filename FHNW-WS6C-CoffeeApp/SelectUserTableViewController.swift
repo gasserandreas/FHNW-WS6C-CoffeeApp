@@ -9,10 +9,6 @@
 import UIKit
 import Foundation
 
-protocol SelectUserTableViewControllerDelegate {
-    func selectUserTableViewControllerDelegateDidSelectUser(_ controller: SelectUserTableViewController, user: User)
-}
-
 class SelectUserTableViewController: UITableViewController {
     
     lazy var dataManager: DataManager = {
@@ -25,11 +21,9 @@ class SelectUserTableViewController: UITableViewController {
         }
     }
     
-    var delegate: SelectUserViewController?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = HelperConsts.backgroundColor
+        view.backgroundColor = UIColor.Theme.BackgroundColor
         addObservers()
     }
     
@@ -39,11 +33,11 @@ class SelectUserTableViewController: UITableViewController {
         
         // new data
         // new data
-        notificationCenter.addObserver(forName: NSNotification.Name(rawValue: HelperConsts.DataManagerNewUserDataNotification), object: nil, queue: mainQueue, using: { _ in
+        notificationCenter.addObserver(forName: NSNotification.Name(rawValue: Consts.Notification.DataManagerNewUserData.rawValue), object: nil, queue: mainQueue, using: { _ in
             self.tableView.reloadData()
         })
         
-        notificationCenter.addObserver(forName: NSNotification.Name(rawValue: HelperConsts.DataManagerNewCoffeeDataNotification), object: nil, queue: mainQueue, using: { _ in
+        notificationCenter.addObserver(forName: NSNotification.Name(rawValue: Consts.Notification.DataManagerNewCoffeeData.rawValue), object: nil, queue: mainQueue, using: { _ in
             self.tableView.reloadData()
         })
     }
@@ -78,8 +72,9 @@ class SelectUserTableViewController: UITableViewController {
         let users: [User] = dataManager.usersSortedArray()
         let user = users[indexPath.row]
         
-        delegate!.selectUserTableViewControllerDelegateDidSelectUser(self, user: user)
-
+        // set user and go back
+        dataManager.setSelectedUser(user: user)
+        performSegue(withIdentifier: Consts.Seques.UnwindToCoffeeViewController.rawValue, sender: self)
     }
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

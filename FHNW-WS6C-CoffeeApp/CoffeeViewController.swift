@@ -9,7 +9,7 @@
 import UIKit
 import Foundation
 
-class CoffeeViewController: UIViewController, SelectUserViewControllerDelegate, SummaryViewControllerDelegate, CoffeeTableViewControllerDelegate {
+class CoffeeViewController: UIViewController {
 
     lazy var dataManager: DataManager = {
         return DataManager.sharedInstance
@@ -20,13 +20,12 @@ class CoffeeViewController: UIViewController, SelectUserViewControllerDelegate, 
     @IBOutlet weak var backImageView: UIImageView!
     @IBOutlet weak var headingLabel: UILabel!
     @IBOutlet weak var userProfileImageView: UIImageView!
+    @IBOutlet weak var userProfileShadowView: UIView!
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         selectedUser = dataManager.selectedUser()
         initView()
-        customLoadView()
-
     }
     
     func addObservers() {
@@ -34,11 +33,11 @@ class CoffeeViewController: UIViewController, SelectUserViewControllerDelegate, 
         let mainQueue = OperationQueue.main
         
         // new data
-        notificationCenter.addObserver(forName: NSNotification.Name(rawValue: HelperConsts.DataManagerNewUserDataNotification), object: nil, queue: mainQueue, using: { _ in
+        notificationCenter.addObserver(forName: NSNotification.Name(rawValue: Consts.Notification.DataManagerNewUserData.rawValue), object: nil, queue: mainQueue, using: { _ in
             self.reloadView()
         })
         
-        notificationCenter.addObserver(forName: NSNotification.Name(rawValue: HelperConsts.DataManagerNewCoffeeDataNotification), object: nil, queue: mainQueue, using: { _ in
+        notificationCenter.addObserver(forName: NSNotification.Name(rawValue: Consts.Notification.DataManagerNewCoffeeData.rawValue), object: nil, queue: mainQueue, using: { _ in
             self.reloadView()
         })
     }
@@ -46,12 +45,30 @@ class CoffeeViewController: UIViewController, SelectUserViewControllerDelegate, 
     // init view
     func initView() {
         // set background color
-        view.backgroundColor = HelperConsts.backgroundColor
+        view.backgroundColor = UIColor.Theme.BackgroundColor
         
-        userProfileImageView.layer.cornerRadius = userProfileImageView.frame.size.width / 2
+        // set image view
+        let radius = userProfileImageView.frame.size.width / 2
+        userProfileImageView.layer.cornerRadius = radius
+        userProfileImageView.layer.masksToBounds = false
         userProfileImageView.clipsToBounds = true
         userProfileImageView.layer.borderWidth = 1.0
-        userProfileImageView.layer.borderColor = HelperConsts.imageBorderColor.cgColor
+        userProfileImageView.layer.borderColor = UIColor.Theme.ImageBorderColor.cgColor
+        
+        userProfileShadowView.layer.cornerRadius = radius
+        userProfileShadowView.clipsToBounds = false
+        userProfileShadowView.layer.masksToBounds = false
+        userProfileShadowView.layer.shadowOffset = CGSize.init(width: 0, height: 0)
+        userProfileShadowView.layer.shadowColor = UIColor.black.cgColor
+        userProfileShadowView.layer.shadowOpacity = 0.33
+        userProfileShadowView.layer.shadowRadius = 5
+
+        
+        // set label
+        headingLabel.font = UIFont.Theme.HeaderTextFont
+        headingLabel.textColor = UIColor.Theme.TextColor
+        
+        customLoadView()
     }
     
     func customLoadView() {
@@ -62,44 +79,15 @@ class CoffeeViewController: UIViewController, SelectUserViewControllerDelegate, 
         }
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == HelperConsts.showSelectUserViewControllerSeque {
-            let destinationController: SelectUserViewController = segue.destination as! SelectUserViewController
-            destinationController.delegate = self
-        } else if segue.identifier == HelperConsts.showSummaryViewControllerSeque {
-            let destinationController: SummaryViewController = segue.destination as! SummaryViewController
-            destinationController.delegate = self
-        } else if segue.identifier == HelperConsts.showCoffeeTableViewControllerSeque {
-            let destinationController: CoffeeTableViewController = segue.destination as! CoffeeTableViewController
-            destinationController.delegate = self
-        }
-
-    }
-    
     // perform refresh of view
     func reloadView() {
         // reset all stored values
         customLoadView()
     }
     
-    // delegate methods
-    internal func selectUserViewControllerDelegateDidSelectUser(_ controller: SelectUserViewController) {
-        _ = self.navigationController?.popToRootViewController(animated: true)
-    }
-    
-    internal func summaryViewControllerDelegateDidSelectBack(_ controller: SummaryViewController) {
-        _ = self.navigationController?.popToRootViewController(animated: true)
-    }
-    
-    internal func coffeeTableViewControllerDelegateCountUpCoffee(_ controller: CoffeeTableViewController, coffee: CoffeeType) {
-        dataManager.countUpCoffee(coffee: coffee)
-    }
-    
-    internal func coffeeTableViewControllerDelegateCountDownCoffee(_ controller: CoffeeTableViewController, coffee: CoffeeType) {
-        dataManager.countDownCoffee(coffee: coffee)
-    }
+    @IBAction func unwindToCoffeeViewController(segue: UIStoryboardSegue) {}
     
     @IBAction func userDidSelectShowSelectUserViewController(sender: UIImageView) {
-        performSegue(withIdentifier: HelperConsts.showSelectUserViewControllerSeque, sender: self)
+        performSegue(withIdentifier: Consts.Seques.ShowSelectUserViewController.rawValue, sender: self)
     }
 }

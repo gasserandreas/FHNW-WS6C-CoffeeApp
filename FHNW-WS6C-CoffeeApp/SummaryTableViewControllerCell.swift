@@ -11,12 +11,19 @@ import Foundation
 
 class SummaryTableViewControllerCell: UITableViewCell {
     
-    @IBOutlet weak var userName: UILabel!
-    @IBOutlet weak var coffeeCounter: UILabel!
+    @IBOutlet weak var userNameLabel: UILabel!
+    @IBOutlet weak var coffeeCounterLabel: UILabel!
     
     func setView() {
         // set cell style
-        backgroundColor = HelperConsts.backgroundColor
+        backgroundColor = UIColor.Theme.BackgroundColor
+        
+        // set label
+        userNameLabel.font = UIFont.Theme.DefaultTextFont
+        userNameLabel.textColor = UIColor.Theme.TextColor
+        
+        coffeeCounterLabel.font = UIFont.Theme.DefaultTextFont
+        coffeeCounterLabel.textColor = UIColor.Theme.TextColor
     }
     
     func setUser(user: User) {
@@ -24,7 +31,7 @@ class SummaryTableViewControllerCell: UITableViewCell {
         for coffee in user.coffees {
             coffees += Int(coffee.value)!
         }
-        coffeeCounter.text = "\(coffees)"
-        userName.text = "\(user.firstname) \(user.name)"
+        coffeeCounterLabel.text = "\(coffees)"
+        userNameLabel.text = "\(user.firstname) \(user.name)"
     }
 }

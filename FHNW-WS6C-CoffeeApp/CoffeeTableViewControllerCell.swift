@@ -9,25 +9,31 @@
 import UIKit
 import Foundation
 
-protocol CoffeeTableViewControllerCellDelegate {
-    func coffeeTableViewControllerCellDelegateCoffeeCountUp(_ cell:CoffeeTableViewControllerCell, coffee: CoffeeType)
-    func coffeeTableViewControllerCellDelegateCoffeeCountDown(_ cell:CoffeeTableViewControllerCell, coffee: CoffeeType)
-}
-
 class CoffeeTableViewControllerCell: UITableViewCell {
     
-    @IBOutlet weak var coffeeTypeName: UILabel!
+    @IBOutlet weak var coffeeTypeNameLabel: UILabel!
+    @IBOutlet weak var coffeeCounterLabel: UILabel!
     @IBOutlet var coffeeCapsuleView: CoffeeCapsuleView!
     @IBOutlet weak var countUpCoffeeView:UIView!
     @IBOutlet weak var countDownCoffeeView:UIView!
     
+    lazy var dataManager: DataManager = {
+        return DataManager.sharedInstance
+    }()
+    
     var coffee: CoffeeType?
-    var delegate: CoffeeTableViewController?
     
     func setView() {
         // set cell style
-        backgroundColor = HelperConsts.backgroundColor
-        coffeeCapsuleView.backgroundColor = HelperConsts.backgroundColor
+        backgroundColor = UIColor.Theme.BackgroundColor
+        coffeeCapsuleView.backgroundColor = UIColor.Theme.BackgroundColor
+        
+        // set labels
+        coffeeTypeNameLabel.font = UIFont.Theme.DefaultTextFont
+        coffeeTypeNameLabel.textColor = UIColor.Theme.TextColor
+        
+        coffeeCounterLabel.font = UIFont.Theme.CoffeeCapsuleCounterFont
+        coffeeCounterLabel.textColor = UIColor.Theme.BackgroundColor
         
         // create gesture recognizers
         let countUpCoffeeTabRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.countUpCoffee))
@@ -44,15 +50,19 @@ class CoffeeTableViewControllerCell: UITableViewCell {
     
     func setCoffeeType(coffeeType: CoffeeType) {
         coffee = coffeeType
-        coffeeTypeName.text = coffeeType.name
+        coffeeTypeNameLabel.text = coffeeType.name
         coffeeCapsuleView.capsuleColor = HelperMethods.uicolorFromString(coffeeType.color)
     }
     
     func countUpCoffee() {
-        delegate!.coffeeTableViewControllerCellDelegateCoffeeCountUp(self, coffee: coffee!)
+        if let _ = coffee {
+            dataManager.countUpCoffee(coffee: coffee!)
+        }
     }
     
     func countDownCoffee() {
-        delegate!.coffeeTableViewControllerCellDelegateCoffeeCountDown(self, coffee: coffee!)
+        if let _ = coffee {
+            dataManager.countDownCoffee(coffee: coffee!)
+        }
     }
 }

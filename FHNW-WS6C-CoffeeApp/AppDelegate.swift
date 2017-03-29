@@ -30,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // set status bar styling
         //UIApplication.shared.setStatusBarStyle(UIStatusBarStyle.lightContent, animated: false)
         //UIApplication.shared.statusBarView.backgroundColor = HelperConsts.topBarBackgroundColor
-        UIApplication.shared.statusBarView.tintColor = HelperConsts.defaultColor
+        UIApplication.shared.statusBarView.tintColor = UIColor.Theme.DefaultColor
         
         return true
     }

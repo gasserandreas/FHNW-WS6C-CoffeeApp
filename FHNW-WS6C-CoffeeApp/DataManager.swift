@@ -123,7 +123,7 @@ class DataManager: NSObject {
                     realm.add(coffee, update: true)
                 }
             }
-            notificationCenter.post(name: Notification.Name(rawValue: HelperConsts.DataManagerNewCoffeeDataNotification), object: nil)
+            notificationCenter.post(name: Notification.Name(rawValue: Consts.Notification.DataManagerNewCoffeeData.rawValue), object: nil)
         } catch let error {
             fatalError(error.localizedDescription)
         }
@@ -136,7 +136,7 @@ class DataManager: NSObject {
                     realm.add(user, update: true)
                 }
             }
-            notificationCenter.post(name: Notification.Name(rawValue: HelperConsts.DataManagerNewUserDataNotification), object: nil)
+            notificationCenter.post(name: Notification.Name(rawValue: Consts.Notification.DataManagerNewUserData.rawValue), object: nil)
         } catch let error {
             fatalError(error.localizedDescription)
         }
@@ -147,7 +147,7 @@ class DataManager: NSObject {
             try realm.write {
                 realm.add(user, update: true)
             }
-            notificationCenter.post(name: Notification.Name(rawValue: HelperConsts.DataManagerNewUserDataNotification), object: nil)
+            notificationCenter.post(name: Notification.Name(rawValue: Consts.Notification.DataManagerNewUserData.rawValue), object: nil)
         } catch let error {
             fatalError(error.localizedDescription)
         }
