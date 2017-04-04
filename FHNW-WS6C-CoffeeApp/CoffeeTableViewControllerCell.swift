@@ -54,6 +54,10 @@ class CoffeeTableViewControllerCell: UITableViewCell {
         coffeeCapsuleView.capsuleColor = HelperMethods.uicolorFromString(coffeeType.color)
     }
     
+    func setCoffeeCounterLabel(counter: String) {
+        coffeeCounterLabel.text = counter
+    }
+    
     func countUpCoffee() {
         if let _ = coffee {
             dataManager.countUpCoffee(coffee: coffee!)

@@ -9,10 +9,10 @@
 import UIKit
 import Foundation
 
-class CustomAnimator: NSObject, UIViewControllerAnimatedTransitioning {
+class MoveLeftRightViewControllerAnimatedTransitioning: NSObject, UIViewControllerAnimatedTransitioning {
     
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-        return 0.5
+        return 0.35
     }
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
@@ -25,6 +25,7 @@ class CustomAnimator: NSObject, UIViewControllerAnimatedTransitioning {
         containerView.addSubview(toVC!.view)
         
         var moveTuple: (start: CGFloat, end: CGFloat)?
+        var option = UIViewAnimationOptions.curveEaseOut
         
         if fromVC!.isKind(of: SelectUserViewController.self) {
             // go right
@@ -43,7 +44,8 @@ class CustomAnimator: NSObject, UIViewControllerAnimatedTransitioning {
         
         toVC!.view.frame = fromVCFrame.offsetBy(dx: moveTuple!.start, dy: 0)
         let duration = transitionDuration(using: transitionContext)
-        UIView.animate(withDuration: duration, animations: {
+        
+        UIView.animate(withDuration: duration, delay: 0.0, options: option, animations: {
             fromVC!.view.frame = fromVCFrame.offsetBy(dx: moveTuple!.end, dy: 0)
             toVC!.view.frame = fromVCFrame
         }, completion: { finished in

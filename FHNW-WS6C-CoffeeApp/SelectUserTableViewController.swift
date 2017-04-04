@@ -9,7 +9,7 @@
 import UIKit
 import Foundation
 
-class SelectUserTableViewController: UITableViewController {
+class SelectUserTableViewController: UITableViewController, SelectUserTableViewControllerCellDelegateMethods {
     
     lazy var dataManager: DataManager = {
         return DataManager.sharedInstance
@@ -60,6 +60,7 @@ class SelectUserTableViewController: UITableViewController {
         // set tableViewCell
         cell.setView()
         cell.setUser(user: user)
+        cell.delegate = self
         
         if (user.id == selectedUser?.id) {
             cell.setSelected(true, animated: false)
@@ -68,15 +69,10 @@ class SelectUserTableViewController: UITableViewController {
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let users: [User] = dataManager.usersSortedArray()
-        let user = users[indexPath.row]
-        
-        // set user and go back
-        dataManager.setSelectedUser(user: user)
+    func customDidSelectRowAt() {
         performSegue(withIdentifier: Consts.Seques.UnwindToCoffeeViewController.rawValue, sender: self)
     }
-    
+ 
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return false
     }

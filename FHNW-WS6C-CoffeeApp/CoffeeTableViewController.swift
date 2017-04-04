@@ -17,6 +17,11 @@ class CoffeeTableViewController: UITableViewController {
         addObservers()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        tableView.reloadData()
+    }
+    
     lazy var dataManager: DataManager = {
         return DataManager.sharedInstance
     }()
@@ -27,6 +32,10 @@ class CoffeeTableViewController: UITableViewController {
         
         // new data
         notificationCenter.addObserver(forName: NSNotification.Name(rawValue: Consts.Notification.DataManagerNewCoffeeData.rawValue), object: nil, queue: mainQueue, using: { _ in
+            self.tableView.reloadData()
+        })
+        
+        notificationCenter.addObserver(forName: NSNotification.Name(rawValue: Consts.Notification.DataManagerNewUserData.rawValue), object: nil, queue: mainQueue, using: { _ in
             self.tableView.reloadData()
         })
     }
@@ -46,8 +55,20 @@ class CoffeeTableViewController: UITableViewController {
         let coffeeTypes: [CoffeeType] = dataManager.coffeeTypesSortedArray()
         let coffeeType = coffeeTypes[indexPath.row]
         
+        // calculate coffee counter
+        var counter = "0"
+        if let user = dataManager.selectedUser() {
+            if let index = user.coffees.index(where: { (item) -> Bool in
+                item.key == coffeeType.id
+            }) {
+                let coffeeCounter = user.coffees[index].value
+                counter = coffeeCounter
+            }
+        }
+        
         // set table view
         cell.setCoffeeType(coffeeType: coffeeType)
+        cell.setCoffeeCounterLabel(counter: counter)
         cell.setView()
         
         return cell

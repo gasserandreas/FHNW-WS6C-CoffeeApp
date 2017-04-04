@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AmF-ro-Hdq">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="3Jn-Yj-ObH">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -115,6 +115,26 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1zu-vD-DEe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-65" y="-1220"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="G9k-PH-gEt">
+            <objects>
+                <navigationController navigationBarHidden="YES" id="3Jn-Yj-ObH" sceneMemberID="viewController">
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="LCg-UN-mRj">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <outlet property="delegate" destination="zfa-vo-u1c" id="X9C-TF-nD8"/>
+                        <segue destination="AmF-ro-Hdq" kind="relationship" relationship="rootViewController" id="zj0-pI-4bO"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fhi-f0-3uk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="zfa-vo-u1c" customClass="NavigationControllerDelegate" customModule="FHNW_WS6C_CoffeeApp" customModuleProvider="target"/>
+            </objects>
+            <point key="canvasLocation" x="-940" y="-468"/>
         </scene>
         <!--Coffee View Controller-->
         <scene sceneID="H6U-k9-NWe">
@@ -231,19 +251,18 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="160"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="i8O-bc-yBA" id="jth-Lm-YH2">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="159"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="159.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" restorationIdentifier="ImageViewRestorationId" translatesAutoresizingMaskIntoConstraints="NO" id="lKM-oY-7g3" userLabel="UserProfile Image Shadow">
                                             <rect key="frame" x="138" y="10" width="100" height="100"/>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="100" id="7Xh-Bs-XKv"/>
                                                 <constraint firstAttribute="width" constant="100" id="WHe-r0-JlV"/>
                                             </constraints>
                                         </view>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person-1" translatesAutoresizingMaskIntoConstraints="NO" id="fi8-rf-AH0">
-                                            <rect key="frame" x="138" y="10" width="100" height="100"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person-1" translatesAutoresizingMaskIntoConstraints="NO" id="fi8-rf-AH0" customClass="RoundedImageView" customModule="FHNW_WS6C_CoffeeApp" customModuleProvider="target">
+                                            <rect key="frame" x="138" y="9.5" width="100" height="100.5"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="100" id="LzG-Ss-oxK"/>
                                                 <constraint firstAttribute="width" constant="100" id="UVz-UN-h8e"/>
@@ -262,17 +281,16 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="lKM-oY-7g3" firstAttribute="centerX" secondItem="jth-Lm-YH2" secondAttribute="centerX" id="0cQ-8C-YKL"/>
+                                        <constraint firstItem="fi8-rf-AH0" firstAttribute="centerY" secondItem="jth-Lm-YH2" secondAttribute="centerY" constant="-20" id="FRJ-DZ-QOc"/>
                                         <constraint firstItem="fi8-rf-AH0" firstAttribute="centerX" secondItem="jth-Lm-YH2" secondAttribute="centerX" id="OAk-0M-CyO"/>
-                                        <constraint firstItem="j7E-md-t3P" firstAttribute="top" secondItem="fi8-rf-AH0" secondAttribute="bottom" constant="15" id="YAu-u2-Zfp"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="j7E-md-t3P" secondAttribute="bottom" constant="6" id="Sfn-vG-SdS"/>
                                         <constraint firstItem="j7E-md-t3P" firstAttribute="centerX" secondItem="jth-Lm-YH2" secondAttribute="centerX" id="fig-je-pMo"/>
-                                        <constraint firstItem="fi8-rf-AH0" firstAttribute="top" secondItem="jth-Lm-YH2" secondAttribute="topMargin" constant="2" id="g7h-kQ-fbX"/>
                                         <constraint firstItem="lKM-oY-7g3" firstAttribute="top" secondItem="jth-Lm-YH2" secondAttribute="topMargin" constant="2" id="uy3-xO-ahK"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="userNameLabel" destination="j7E-md-t3P" id="v6N-x4-Phk"/>
                                     <outlet property="userProfileImageView" destination="fi8-rf-AH0" id="4Gt-EX-w1g"/>
-                                    <outlet property="userProfileShadowView" destination="lKM-oY-7g3" id="kIO-QT-bOg"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -303,7 +321,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="155"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DP0-M0-m2L" id="8kN-aP-vfY">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="154"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="154.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CU9-pY-bwf" customClass="CoffeeCapsuleView" customModule="FHNW_WS6C_CoffeeApp" customModuleProvider="target">
@@ -481,7 +499,7 @@
             <objects>
                 <tableViewController id="igo-TJ-RmC" customClass="SummaryTableViewController" customModule="FHNW_WS6C_CoffeeApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="FsR-ct-ZeE">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="376"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -489,7 +507,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TT7-ey-EHD" id="yz2-QW-ZrO">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="69"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="69.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Andreas Gasser" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2hw-Lt-sv7">

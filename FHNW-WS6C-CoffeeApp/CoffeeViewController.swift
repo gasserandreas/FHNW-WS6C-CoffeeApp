@@ -9,13 +9,15 @@
 import UIKit
 import Foundation
 
-class CoffeeViewController: UIViewController {
+class CoffeeViewController: UIViewController, UIViewControllerTransitioningDelegate {
 
     lazy var dataManager: DataManager = {
         return DataManager.sharedInstance
     }()
     
     var selectedUser: User?
+    
+    let moveLeftRightAnimationController = MoveLeftRightViewControllerAnimatedTransitioning()
     
     @IBOutlet weak var backImageView: UIImageView!
     @IBOutlet weak var headingLabel: UILabel!
