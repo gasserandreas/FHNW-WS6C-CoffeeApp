@@ -9,25 +9,40 @@
 import UIKit
 import Foundation
 
-protocol CoffeeTableViewControllerCellDelegate {
-    func coffeeTableViewControllerCellDelegateCoffeeCountUp(_ cell:CoffeeTableViewControllerCell, coffee: CoffeeType)
-    func coffeeTableViewControllerCellDelegateCoffeeCountDown(_ cell:CoffeeTableViewControllerCell, coffee: CoffeeType)
-}
-
 class CoffeeTableViewControllerCell: UITableViewCell {
     
-    @IBOutlet weak var coffeeTypeName: UILabel!
+    @IBOutlet weak var coffeeTypeNameLabel: UILabel!
+    @IBOutlet weak var coffeeCounterLabel: UILabel!
     @IBOutlet var coffeeCapsuleView: CoffeeCapsuleView!
     @IBOutlet weak var countUpCoffeeView:UIView!
     @IBOutlet weak var countDownCoffeeView:UIView!
     
-    var coffee: CoffeeType?
-    var delegate: CoffeeTableViewController?
+    lazy var dataManager: DataManager = {
+        return DataManager.sharedInstance
+    }()
+    
+    var model: TableViewCellModel?
+    
+    var coffee: CoffeeType? {
+        get {
+            return model?.data as? CoffeeType
+        }
+    }
+    
+    // define animation functions
+    
     
     func setView() {
         // set cell style
-        backgroundColor = HelperConsts.backgroundColor
-        coffeeCapsuleView.backgroundColor = HelperConsts.backgroundColor
+        backgroundColor = UIColor.Theme.BackgroundColor
+        coffeeCapsuleView.backgroundColor = UIColor.Theme.BackgroundColor
+        
+        // set labels
+        coffeeTypeNameLabel.font = UIFont.Theme.DefaultTextFont
+        coffeeTypeNameLabel.textColor = UIColor.Theme.TextColor
+        
+        coffeeCounterLabel.font = UIFont.Theme.CoffeeCapsuleCounterFont
+        coffeeCounterLabel.textColor = UIColor.Theme.BackgroundColor
         
         // create gesture recognizers
         let countUpCoffeeTabRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.countUpCoffee))
@@ -40,19 +55,45 @@ class CoffeeTableViewControllerCell: UITableViewCell {
         // add to view
         countUpCoffeeView.addGestureRecognizer(countUpCoffeeTabRecognizer)
         countDownCoffeeView.addGestureRecognizer(countDownCoffeeTabRecognizer)
+        
     }
     
-    func setCoffeeType(coffeeType: CoffeeType) {
-        coffee = coffeeType
-        coffeeTypeName.text = coffeeType.name
-        coffeeCapsuleView.capsuleColor = HelperMethods.uicolorFromString(coffeeType.color)
+    func setModel(model: TableViewCellModel) {
+        self.model = model
+        coffeeTypeNameLabel.text = coffee!.name
+        coffeeCapsuleView.capsuleColor = HelperMethods.uicolorFromString(coffee!.color)
+    }
+    
+    func setCoffeeCounterLabel(counter: String) {
+        coffeeCounterLabel.text = counter
     }
     
     func countUpCoffee() {
-        delegate!.coffeeTableViewControllerCellDelegateCoffeeCountUp(self, coffee: coffee!)
+        if let _ = coffee {
+            UIView.animate(withDuration: 0.1, delay: 0.0, options: UIViewAnimationOptions.allowAnimatedContent, animations: {
+                self.countUpCoffeeView.transform = CGAffineTransform(scaleX: 0.85, y: 0.85)
+            }, completion: { (success) in
+                UIView.animate(withDuration: 0.05, delay: 0.05, options: UIViewAnimationOptions.allowAnimatedContent, animations: {
+                    self.countUpCoffeeView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+                }, completion: { (success) in
+                    self.dataManager.countUpCoffee(coffee: self.coffee!)
+                })
+            })
+        }
     }
     
     func countDownCoffee() {
-        delegate!.coffeeTableViewControllerCellDelegateCoffeeCountDown(self, coffee: coffee!)
+        if let _ = coffee {
+            UIView.animate(withDuration: 0.1, delay: 0.0, options: UIViewAnimationOptions.allowAnimatedContent, animations: {
+                self.countDownCoffeeView.transform = CGAffineTransform(scaleX: 0.85, y: 0.85)
+            }, completion: { (success) in
+                UIView.animate(withDuration: 0.05, delay: 0.05, options: UIViewAnimationOptions.allowAnimatedContent, animations: {
+                    self.countDownCoffeeView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+                }, completion: { (success) in
+                    self.dataManager.countDownCoffee(coffee: self.coffee!)
+                })
+            })
+
+        }
     }
 }

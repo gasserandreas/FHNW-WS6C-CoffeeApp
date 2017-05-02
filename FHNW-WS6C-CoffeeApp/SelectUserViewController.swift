@@ -9,11 +9,7 @@
 import UIKit
 import Foundation
 
-protocol SelectUserViewControllerDelegate {
-    func selectUserViewControllerDelegateDidSelectUser(_ controller: SelectUserViewController)
-}
-
-class SelectUserViewController: UIViewController, SelectUserTableViewControllerDelegate {
+class SelectUserViewController: UIViewController {
     
     lazy var dataManager: DataManager = {
         return DataManager.sharedInstance
@@ -25,8 +21,6 @@ class SelectUserViewController: UIViewController, SelectUserTableViewControllerD
         }
     }
     
-    var delegate: CoffeeViewController?
-    
     @IBOutlet weak var fhnwTitleLabel: UILabel!
     @IBOutlet weak var coffeeTitelLabel: UILabel!
     @IBOutlet weak var headingLabel: UILabel!
@@ -35,7 +29,6 @@ class SelectUserViewController: UIViewController, SelectUserTableViewControllerD
         super.viewDidAppear(animated)
         
         initView()
-        customLoadView()
     }
     
     func addObservers() {
@@ -43,12 +36,11 @@ class SelectUserViewController: UIViewController, SelectUserTableViewControllerD
         let mainQueue = OperationQueue.main
         
         // new data
-        // new data
-        notificationCenter.addObserver(forName: NSNotification.Name(rawValue: HelperConsts.DataManagerNewUserDataNotification), object: nil, queue: mainQueue, using: { _ in
+        notificationCenter.addObserver(forName: NSNotification.Name(rawValue: Consts.Notification.DataManagerNewUsersData.rawValue), object: nil, queue: mainQueue, using: { _ in
             self.reloadView()
         })
         
-        notificationCenter.addObserver(forName: NSNotification.Name(rawValue: HelperConsts.DataManagerNewCoffeeDataNotification), object: nil, queue: mainQueue, using: { _ in
+        notificationCenter.addObserver(forName: NSNotification.Name(rawValue: Consts.Notification.DataManagerNewCoffeeData.rawValue), object: nil, queue: mainQueue, using: { _ in
             self.reloadView()
         })
     }
@@ -56,14 +48,21 @@ class SelectUserViewController: UIViewController, SelectUserTableViewControllerD
     // init view
     func initView() {
         // set background color
-        view.backgroundColor = HelperConsts.backgroundColor
+        view.backgroundColor = UIColor.Theme.BackgroundColor
         
         // set color and fonts
-        fhnwTitleLabel.textColor = HelperConsts.defaultColor
-        coffeeTitelLabel.textColor = HelperConsts.defaultColor
-        headingLabel.textColor = HelperConsts.defaultColor
+        //fhnwTitleLabel.font = UIFont.Theme.HeaderTextFont
+        fhnwTitleLabel.textColor = UIColor.Theme.TextColor
+        
+        coffeeTitelLabel.textColor = UIColor.Theme.TextColor
+        
+        headingLabel.font = UIFont.Theme.HeaderTextFont
+        headingLabel.textColor = UIColor.Theme.TextColor
+        
+        customLoadView()
     }
     
+    // reload view
     func customLoadView() {
         
     }
@@ -74,18 +73,12 @@ class SelectUserViewController: UIViewController, SelectUserTableViewControllerD
         customLoadView()
     }
     
+    /*
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == HelperConsts.showSelectUserTableViewControllerSeque {
             let destinationController: SelectUserTableViewController = segue.destination as! SelectUserTableViewController
             destinationController.delegate = self
         }
     }
-
-    
-    // MainTableViewControllerDelegate delegate methods
-    func selectUserTableViewControllerDelegateDidSelectUser(_ controller: SelectUserTableViewController, user: User) {
-        dataManager.setSelectedUser(user: user)
-        delegate!.selectUserViewControllerDelegateDidSelectUser(self)
-    }
-
+    */
 }

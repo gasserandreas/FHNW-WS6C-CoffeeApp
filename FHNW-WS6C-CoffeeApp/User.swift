@@ -35,4 +35,8 @@ class User: Object, Mappable {
     override class func primaryKey() -> String? {
         return "id"
     }
+    
+    func sortedCoffeesArray() -> [CoffeeObject] {
+        return Array(self.coffees).sorted(by: { $0.value < $1.value })
+    }
 }

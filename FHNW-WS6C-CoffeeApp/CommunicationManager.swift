@@ -52,11 +52,11 @@ class CommunicationManager: NSObject {
         super.init()
     }
     
-    func countUpCoffee(completionHandler:@escaping (User) -> (), user: User, coffee: CoffeeType) {
+    func countUpCoffee(completionHandler:@escaping (User, CoffeeType) -> (), user: User, coffee: CoffeeType) {
         postCountUpCoffee(completionHandler: completionHandler, user: user, coffee: coffee)
     }
     
-    func countDownCoffee(completionHandler:@escaping (User) -> (), user: User, coffee: CoffeeType) {
+    func countDownCoffee(completionHandler:@escaping (User, CoffeeType) -> (), user: User, coffee: CoffeeType) {
         postCountDownCoffee(completionHandler: completionHandler, user: user, coffee: coffee)
     }
     
@@ -78,18 +78,18 @@ class CommunicationManager: NSObject {
         }
     }
     
-    private func postCountUpCoffee(completionHandler:@escaping (User) -> (), user: User, coffee: CoffeeType) {
+    private func postCountUpCoffee(completionHandler:@escaping (User, CoffeeType) -> (), user: User, coffee: CoffeeType) {
         Alamofire.request(HelperMethods.postCountUpCoffee(user: user, coffee: coffee), method: .post, parameters: nil).responseObject { (response: DataResponse<User>) in
             if let user: User = response.result.value {
-                completionHandler(user)
+                completionHandler(user, coffee)
             }
         }
     }
     
-    private func postCountDownCoffee(completionHandler:@escaping (User) -> (), user: User, coffee: CoffeeType) {
+    private func postCountDownCoffee(completionHandler:@escaping (User, CoffeeType) -> (), user: User, coffee: CoffeeType) {
         Alamofire.request(HelperMethods.postCountDownCoffee(user: user, coffee: coffee), method: .post, parameters: nil).responseObject { (response: DataResponse<User>) in
             if let user: User = response.result.value {
-                completionHandler(user)
+                completionHandler(user, coffee)
             }
         }
     }

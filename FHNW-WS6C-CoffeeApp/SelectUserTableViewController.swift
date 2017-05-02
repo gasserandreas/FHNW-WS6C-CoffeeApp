@@ -8,12 +8,17 @@
 
 import UIKit
 import Foundation
+import Spruce
 
-protocol SelectUserTableViewControllerDelegate {
-    func selectUserTableViewControllerDelegateDidSelectUser(_ controller: SelectUserTableViewController, user: User)
-}
-
-class SelectUserTableViewController: UITableViewController {
+class SelectUserTableViewController: UITableViewController, SelectUserTableViewControllerCellDelegateMethods {
+    
+    // MARK: - Animation properties
+    var shouldPrepareAnimationOnFirstLoad: Bool = false
+    var animations: [StockAnimation] = [.slide(.up, .severely), .fadeIn]
+    var animationDuration = 0.7
+    var animationInterObjectDelay = 0.075
+    var animationTimerDelay = 0.5
+    var animationTimer: Timer?
     
     lazy var dataManager: DataManager = {
         return DataManager.sharedInstance
@@ -25,12 +30,23 @@ class SelectUserTableViewController: UITableViewController {
         }
     }
     
-    var delegate: SelectUserViewController?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = HelperConsts.backgroundColor
+        view.backgroundColor = UIColor.Theme.BackgroundColor
         addObservers()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.tableView.reloadData()
+        
+        if (shouldPrepareAnimationOnFirstLoad) {
+            prepareAnimation()
+        } else {
+            shouldPrepareAnimationOnFirstLoad = true
+            callAnimation()
+        }
     }
     
     func addObservers() {
@@ -39,13 +55,33 @@ class SelectUserTableViewController: UITableViewController {
         
         // new data
         // new data
-        notificationCenter.addObserver(forName: NSNotification.Name(rawValue: HelperConsts.DataManagerNewUserDataNotification), object: nil, queue: mainQueue, using: { _ in
+        notificationCenter.addObserver(forName: NSNotification.Name(rawValue: Consts.Notification.DataManagerNewUsersData.rawValue), object: nil, queue: mainQueue, using: { _ in
             self.tableView.reloadData()
         })
         
-        notificationCenter.addObserver(forName: NSNotification.Name(rawValue: HelperConsts.DataManagerNewCoffeeDataNotification), object: nil, queue: mainQueue, using: { _ in
+        notificationCenter.addObserver(forName: NSNotification.Name(rawValue: Consts.Notification.DataManagerNewCoffeeData.rawValue), object: nil, queue: mainQueue, using: { _ in
             self.tableView.reloadData()
         })
+    }
+    
+    // MARK: - Animation methods
+    private func prepareAnimation() {
+        self.tableView.spruce.prepare(with: animations)
+        startAnimation()
+    }
+    
+    private func startAnimation() {
+        animationTimer?.invalidate()
+        animationTimer = Timer.scheduledTimer(timeInterval: animationTimerDelay, target: self, selector: #selector(callAnimation), userInfo: nil, repeats: false)
+    }
+    
+    func callAnimation() {
+        let sortFunction = LinearSortFunction(direction: .bottomToTop, interObjectDelay: animationInterObjectDelay)
+        //        let sortFunction = DefaultSortFunction(interObjectDelay: 0.05)
+        let animation = SpringAnimation(duration: animationDuration)
+        DispatchQueue.main.async {
+            self.tableView.spruce.animate(self.animations, animationType: animation, sortFunction: sortFunction)
+        }
     }
     
     // MARK: - Table View
@@ -66,6 +102,7 @@ class SelectUserTableViewController: UITableViewController {
         // set tableViewCell
         cell.setView()
         cell.setUser(user: user)
+        cell.delegate = self
         
         if (user.id == selectedUser?.id) {
             cell.setSelected(true, animated: false)
@@ -74,14 +111,10 @@ class SelectUserTableViewController: UITableViewController {
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let users: [User] = dataManager.usersSortedArray()
-        let user = users[indexPath.row]
-        
-        delegate!.selectUserTableViewControllerDelegateDidSelectUser(self, user: user)
-
+    func customDidSelectRowAt() {
+        performSegue(withIdentifier: Consts.Seques.UnwindToCoffeeViewController.rawValue, sender: self)
     }
-    
+ 
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return false
     }
