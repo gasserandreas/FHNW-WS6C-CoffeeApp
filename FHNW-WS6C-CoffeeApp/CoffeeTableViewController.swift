@@ -9,17 +9,34 @@
 import UIKit
 import Foundation
 
+import Spruce
+
 class CoffeeTableViewController: UITableViewController {
+    
+    var shouldPrepareAnimationOnFirstLoad: Bool = false
+    var animations: [StockAnimation] = [.slide(.up, .severely), .fadeIn]
+    var animationDuration = 0.8
+    var animationInterObjectDelay = 0.05
+    var animationTimerDelay = 0.1
+    var animationTimer: Timer?
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.tableView.reloadData()
+        
+        if (shouldPrepareAnimationOnFirstLoad) {
+            prepareAnimation()
+        } else {
+            shouldPrepareAnimationOnFirstLoad = true
+            callAnimation()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.Theme.BackgroundColor
         addObservers()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        tableView.reloadData()
     }
     
     lazy var dataManager: DataManager = {
@@ -40,21 +57,38 @@ class CoffeeTableViewController: UITableViewController {
         })
         
         notificationCenter.addObserver(forName: NSNotification.Name(rawValue: Consts.Notification.DataManagerNewUserData.rawValue), object: nil, queue: mainQueue, using: { notification in
-            if let coffeeId = notification.userInfo?["coffeeId"] as? String {
-                self.updateTableViewCell(id: coffeeId)
-            }
-            
+            self.tableView.reloadData()
         })
     }
     
     private func updateTableViewCell(id: String) {
         if let user = dataManager.selectedUser() {
-            if let index = user.coffees.index(where: { (item) -> Bool in
+            if let index = user.sortedCoffeesArray().index(where: { (item) -> Bool in
                 item.key == id
             }) {
+                NSLog(String(index))
                 let indexPath: IndexPath = IndexPath(row: index, section: 0)
                 tableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.none)
             }
+        }
+    }
+    
+    private func prepareAnimation() {
+        self.tableView.spruce.prepare(with: animations)
+        startAnimation()
+    }
+    
+    func startAnimation() {
+        animationTimer?.invalidate()
+        animationTimer = Timer.scheduledTimer(timeInterval: animationTimerDelay, target: self, selector: #selector(callAnimation), userInfo: nil, repeats: false)
+    }
+    
+    func callAnimation() {
+        let sortFunction = LinearSortFunction(direction: .bottomToTop, interObjectDelay: animationInterObjectDelay)
+        //        let sortFunction = DefaultSortFunction(interObjectDelay: 0.05)
+        let animation = SpringAnimation(duration: animationDuration)
+        DispatchQueue.main.async {
+            self.tableView.spruce.animate(self.animations, animationType: animation, sortFunction: sortFunction)
         }
     }
     

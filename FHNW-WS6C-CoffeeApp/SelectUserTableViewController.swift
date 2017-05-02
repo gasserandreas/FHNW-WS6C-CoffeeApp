@@ -8,8 +8,16 @@
 
 import UIKit
 import Foundation
+import Spruce
 
 class SelectUserTableViewController: UITableViewController, SelectUserTableViewControllerCellDelegateMethods {
+    
+    var shouldPrepareAnimationOnFirstLoad: Bool = false
+    var animations: [StockAnimation] = [.slide(.up, .severely), .fadeIn]
+    var animationDuration = 0.7
+    var animationInterObjectDelay = 0.075
+    var animationTimerDelay = 0.5
+    var animationTimer: Timer?
     
     lazy var dataManager: DataManager = {
         return DataManager.sharedInstance
@@ -27,6 +35,19 @@ class SelectUserTableViewController: UITableViewController, SelectUserTableViewC
         addObservers()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.tableView.reloadData()
+        
+        if (shouldPrepareAnimationOnFirstLoad) {
+            prepareAnimation()
+        } else {
+            shouldPrepareAnimationOnFirstLoad = true
+            callAnimation()
+        }
+    }
+    
     func addObservers() {
         let notificationCenter = NotificationCenter.default
         let mainQueue = OperationQueue.main
@@ -40,6 +61,25 @@ class SelectUserTableViewController: UITableViewController, SelectUserTableViewC
         notificationCenter.addObserver(forName: NSNotification.Name(rawValue: Consts.Notification.DataManagerNewCoffeeData.rawValue), object: nil, queue: mainQueue, using: { _ in
             self.tableView.reloadData()
         })
+    }
+    
+    private func prepareAnimation() {
+        self.tableView.spruce.prepare(with: animations)
+        startAnimation()
+    }
+    
+    private func startAnimation() {
+        animationTimer?.invalidate()
+        animationTimer = Timer.scheduledTimer(timeInterval: animationTimerDelay, target: self, selector: #selector(callAnimation), userInfo: nil, repeats: false)
+    }
+    
+    func callAnimation() {
+        let sortFunction = LinearSortFunction(direction: .bottomToTop, interObjectDelay: animationInterObjectDelay)
+        //        let sortFunction = DefaultSortFunction(interObjectDelay: 0.05)
+        let animation = SpringAnimation(duration: animationDuration)
+        DispatchQueue.main.async {
+            self.tableView.spruce.animate(self.animations, animationType: animation, sortFunction: sortFunction)
+        }
     }
     
     // MARK: - Table View

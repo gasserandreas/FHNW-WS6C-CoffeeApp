@@ -60,27 +60,14 @@ class DataManager: NSObject {
         // load data
         loadCoffees()
         loadUsers()
-        
-        addObservers()
-    }
-    
-    func addObservers() {
-        
-//        _ = notificationCenter.addObserver(forName: NSNotification.Name(rawValue: HelperConsts.CommunicationManagerNewUserFileNotification), object: nil, queue: mainQueue, using: { _ in
-//            self.loadUserDataFromFileSystem()
-//        })
-//        
-//        _ = notificationCenter.addObserver(forName: NSNotification.Name(rawValue: HelperConsts.CommunicationManagerNewCoffeeFileNotification), object: nil, queue: mainQueue, using: { _ in
-//            self.loadCoffeeDataFromFileSystem()
-//        })
     }
     
     func usersSortedArray() -> [User] {
-        return Array(realm.objects(User.self))
+        return Array(realm.objects(User.self)).sorted(by: { $0.firstname < $1.firstname })
     }
     
     func coffeeTypesSortedArray() -> [CoffeeType] {
-        return Array(realm.objects(CoffeeType.self))
+        return Array(realm.objects(CoffeeType.self)).sorted(by: { $0.id < $1.id })
     }
     
     func selectedUser() -> User? {
@@ -147,8 +134,6 @@ class DataManager: NSObject {
             try realm.write {
                 realm.add(user, update: true)
             }
-            //notificationCenter.post(name: Notification.Name(rawValue: Consts.Notification.DataManagerNewUserData.rawValue), object: nil)
-            print("saveUser")
             let userInfoArr = ["userId": user.id, "coffeeId": coffee.id]
             notificationCenter.post(name: Notification.Name(rawValue: Consts.Notification.DataManagerNewUserData.rawValue), object: nil, userInfo: userInfoArr)
         } catch let error {
