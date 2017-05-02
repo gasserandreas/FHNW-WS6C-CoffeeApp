@@ -27,17 +27,8 @@ struct Consts {
         case DataManagerNewUserData = "DataManagerNewUserDataNotification"
         case DataManagerNewUsersData = "DataManagerNewUsersDataNotification"
     }
-    /*
-    enum FontName {
-        enum SFUIText: String {
-            case Light = "SFUIText-Light"
-            case Regular = "SFUIText-Regular"
-            case Medium = "SFUIText-Medium"
-            case Semibold = "SFUIText-Semibold"
-        }
-        enum Slabo: String {
-            case Regular = "SlaboRegular"
-        }
+    enum UserDefaults: String {
+        case UserId = "UserId"
+        case UserOnBoarded = "UserOnBoarded"
     }
-    */
 }

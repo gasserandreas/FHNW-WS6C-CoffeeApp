@@ -69,14 +69,14 @@ class DataManager: NSObject {
     }
     
     func selectedUser() -> User? {
-        if let userId = UserDefaults.standard.value(forKey: "userId" as String!) {
+        if let userId = UserDefaults.standard.value(forKey: Consts.UserDefaults.UserId.rawValue) as? String {
             return realm.object(ofType: User.self, forPrimaryKey: userId)
         }
         return nil
     }
         
     func setSelectedUser(user: User) {
-        UserDefaults.standard.set(user.id, forKey: "userId")
+        UserDefaults.standard.set(user.id, forKey: Consts.UserDefaults.UserId.rawValue)
     }
     
     // load data

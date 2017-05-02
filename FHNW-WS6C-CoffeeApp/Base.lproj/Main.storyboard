@@ -47,7 +47,7 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FHNW" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Udj-fT-4RF">
-                                        <rect key="frame" x="69" y="0.0" width="82" height="26"/>
+                                        <rect key="frame" x="69" y="0.0" width="77" height="26"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="26" id="2HF-Hz-aS4"/>
                                         </constraints>
@@ -56,7 +56,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coffee" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lmO-wf-vjO">
-                                        <rect key="frame" x="69" y="24" width="82" height="26"/>
+                                        <rect key="frame" x="69" y="24" width="77" height="26"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="26" id="g4U-wo-3vA"/>
                                         </constraints>
@@ -149,7 +149,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ADD COFFEE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6EV-pg-iXF">
-                                <rect key="frame" x="57" y="35" width="260" height="26"/>
+                                <rect key="frame" x="57.5" y="35" width="260" height="26"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="260" id="pms-xg-74S"/>
                                     <constraint firstAttribute="height" constant="26" id="vqA-4s-ZwU"/>
@@ -255,21 +255,21 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" restorationIdentifier="ImageViewRestorationId" translatesAutoresizingMaskIntoConstraints="NO" id="lKM-oY-7g3" userLabel="UserProfile Image Shadow">
-                                            <rect key="frame" x="138" y="10" width="100" height="100"/>
+                                            <rect key="frame" x="137.5" y="10" width="100" height="100"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="100" id="7Xh-Bs-XKv"/>
                                                 <constraint firstAttribute="width" constant="100" id="WHe-r0-JlV"/>
                                             </constraints>
                                         </view>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person-1" translatesAutoresizingMaskIntoConstraints="NO" id="fi8-rf-AH0" customClass="RoundedImageView" customModule="FHNW_WS6C_CoffeeApp" customModuleProvider="target">
-                                            <rect key="frame" x="138" y="9.5" width="100" height="100.5"/>
+                                            <rect key="frame" x="137.5" y="9.5" width="100" height="100.5"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="100" id="LzG-Ss-oxK"/>
                                                 <constraint firstAttribute="width" constant="100" id="UVz-UN-h8e"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Andreas Gasser" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j7E-md-t3P">
-                                            <rect key="frame" x="57" y="125" width="260" height="21"/>
+                                            <rect key="frame" x="57.5" y="125" width="260" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="Uan-22-UX5"/>
                                                 <constraint firstAttribute="width" constant="260" id="gcx-aY-fw0"/>
@@ -325,7 +325,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CU9-pY-bwf" customClass="CoffeeCapsuleView" customModule="FHNW_WS6C_CoffeeApp" customModuleProvider="target">
-                                            <rect key="frame" x="142.5" y="15" width="90" height="90"/>
+                                            <rect key="frame" x="255" y="15" width="90" height="90"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="90" id="UZt-8o-rtN"/>
@@ -333,7 +333,7 @@
                                             </constraints>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Arpeccio" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qMS-Ki-tXN">
-                                            <rect key="frame" x="57.5" y="120" width="260" height="21"/>
+                                            <rect key="frame" x="170" y="120" width="260" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="K2S-fY-dov"/>
                                                 <constraint firstAttribute="width" constant="260" id="qG8-zB-WUw"/>
@@ -343,7 +343,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plus" translatesAutoresizingMaskIntoConstraints="NO" id="fSK-gV-8He">
-                                            <rect key="frame" x="282.5" y="47.5" width="25" height="25"/>
+                                            <rect key="frame" x="395" y="47.5" width="25" height="25"/>
                                             <gestureRecognizers/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="25" id="DWz-wJ-hoV"/>
@@ -351,14 +351,14 @@
                                             </constraints>
                                         </imageView>
                                         <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="minus" translatesAutoresizingMaskIntoConstraints="NO" id="npA-Ks-hcc">
-                                            <rect key="frame" x="66.5" y="56.5" width="26" height="7"/>
+                                            <rect key="frame" x="179" y="56.5" width="26" height="7"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="7" id="anS-o5-oX2"/>
                                                 <constraint firstAttribute="width" constant="26" id="qSx-e8-uUq"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="42" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bit-3Q-ci1" userLabel="Coffee Counter">
-                                            <rect key="frame" x="162" y="63" width="50" height="20"/>
+                                            <rect key="frame" x="274.5" y="63" width="50" height="20"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="50" id="3L9-Ko-KLq"/>
                                                 <constraint firstAttribute="height" constant="20" id="R8i-k5-K2f"/>
@@ -499,7 +499,7 @@
             <objects>
                 <tableViewController id="igo-TJ-RmC" customClass="SummaryTableViewController" customModule="FHNW_WS6C_CoffeeApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="FsR-ct-ZeE">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="376"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
