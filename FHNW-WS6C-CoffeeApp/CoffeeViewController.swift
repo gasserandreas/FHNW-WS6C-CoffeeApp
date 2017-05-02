@@ -78,7 +78,14 @@ class CoffeeViewController: UIViewController, UIViewControllerTransitioningDeleg
         if let user = selectedUser {
             let url = URL(string: HelperMethods.getImageEndPointString(imageName: user.imageName))!
             userProfileImageView.af_setImage(withURL: url)
+        } else {
+            // push back to select user view
+            performSegueShowSelectUserViewController()
         }
+    }
+    
+    func performSegueShowSelectUserViewController() {
+        performSegue(withIdentifier: Consts.Seques.ShowSelectUserViewController.rawValue, sender: self)
     }
     
     // perform refresh of view
@@ -90,6 +97,6 @@ class CoffeeViewController: UIViewController, UIViewControllerTransitioningDeleg
     @IBAction func unwindToCoffeeViewController(segue: UIStoryboardSegue) {}
     
     @IBAction func userDidSelectShowSelectUserViewController(sender: UIImageView) {
-        performSegue(withIdentifier: Consts.Seques.ShowSelectUserViewController.rawValue, sender: self)
+        performSegueShowSelectUserViewController()
     }
 }

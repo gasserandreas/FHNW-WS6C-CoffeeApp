@@ -25,7 +25,7 @@ class MoveLeftRightViewControllerAnimatedTransitioning: NSObject, UIViewControll
         containerView.addSubview(toVC!.view)
         
         var moveTuple: (start: CGFloat, end: CGFloat)?
-        var option = UIViewAnimationOptions.curveEaseOut
+        let option = UIViewAnimationOptions.curveEaseOut
         
         if fromVC!.isKind(of: SelectUserViewController.self) {
             // go right
