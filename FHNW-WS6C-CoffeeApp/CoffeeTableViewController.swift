@@ -13,10 +13,11 @@ import Spruce
 
 class CoffeeTableViewController: UITableViewController {
     
+    // MARK: - Animation properties
     var shouldPrepareAnimationOnFirstLoad: Bool = false
     var animations: [StockAnimation] = [.slide(.up, .severely), .fadeIn]
-    var animationDuration = 0.8
-    var animationInterObjectDelay = 0.05
+    var animationDuration = 0.7
+    var animationInterObjectDelay = 0.075
     var animationTimerDelay = 0.1
     var animationTimer: Timer?
     
@@ -73,6 +74,7 @@ class CoffeeTableViewController: UITableViewController {
         }
     }
     
+    // MARK: - Animation methods
     private func prepareAnimation() {
         self.tableView.spruce.prepare(with: animations)
         startAnimation()

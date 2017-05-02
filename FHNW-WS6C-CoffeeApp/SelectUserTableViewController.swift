@@ -12,6 +12,7 @@ import Spruce
 
 class SelectUserTableViewController: UITableViewController, SelectUserTableViewControllerCellDelegateMethods {
     
+    // MARK: - Animation properties
     var shouldPrepareAnimationOnFirstLoad: Bool = false
     var animations: [StockAnimation] = [.slide(.up, .severely), .fadeIn]
     var animationDuration = 0.7
@@ -63,6 +64,7 @@ class SelectUserTableViewController: UITableViewController, SelectUserTableViewC
         })
     }
     
+    // MARK: - Animation methods
     private func prepareAnimation() {
         self.tableView.spruce.prepare(with: animations)
         startAnimation()

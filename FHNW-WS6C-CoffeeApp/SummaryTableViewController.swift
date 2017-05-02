@@ -8,8 +8,30 @@
 
 import UIKit
 import Foundation
+import Spruce
 
 class SummaryTableViewController: UITableViewController {
+    
+    // MARK: - Animation properties
+    var shouldPrepareAnimationOnFirstLoad: Bool = false
+    var animations: [StockAnimation] = [.slide(.up, .severely), .fadeIn]
+    var animationDuration = 0.5
+    var animationInterObjectDelay = 0.05
+    var animationTimerDelay = 0.5
+    var animationTimer: Timer?
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.tableView.reloadData()
+        
+        if (shouldPrepareAnimationOnFirstLoad) {
+            prepareAnimation()
+        } else {
+            shouldPrepareAnimationOnFirstLoad = true
+            callAnimation()
+        }
+    }
     
     lazy var dataManager: DataManager = {
         return DataManager.sharedInstance
@@ -29,6 +51,26 @@ class SummaryTableViewController: UITableViewController {
         notificationCenter.addObserver(forName: NSNotification.Name(rawValue: Consts.Notification.DataManagerNewUsersData.rawValue), object: nil, queue: mainQueue, using: { _ in
             self.tableView.reloadData()
         })
+    }
+    
+    // MARK: - Animation methods
+    private func prepareAnimation() {
+        self.tableView.spruce.prepare(with: animations)
+        startAnimation()
+    }
+    
+    func startAnimation() {
+        animationTimer?.invalidate()
+        animationTimer = Timer.scheduledTimer(timeInterval: animationTimerDelay, target: self, selector: #selector(callAnimation), userInfo: nil, repeats: false)
+    }
+    
+    func callAnimation() {
+        let sortFunction = LinearSortFunction(direction: .bottomToTop, interObjectDelay: animationInterObjectDelay)
+        //        let sortFunction = DefaultSortFunction(interObjectDelay: 0.05)
+        let animation = SpringAnimation(duration: animationDuration)
+        DispatchQueue.main.async {
+            self.tableView.spruce.animate(self.animations, animationType: animation, sortFunction: sortFunction)
+        }
     }
     
     // MARK: - Table View
