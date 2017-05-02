@@ -74,6 +74,8 @@ class SelectUserTableViewControllerCell: UITableViewCell {
                     if success {
                         self.dataManager.setSelectedUser(user: user)
                         self.delegate!.customDidSelectRowAt()
+                    } else {
+                        self.userProfileImageView.transform = CGAffineTransform.identity
                     }
                 })
             }

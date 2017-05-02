@@ -21,7 +21,16 @@ class CoffeeTableViewControllerCell: UITableViewCell {
         return DataManager.sharedInstance
     }()
     
-    var coffee: CoffeeType?
+    var model: TableViewCellModel?
+    
+    var coffee: CoffeeType? {
+        get {
+            return model?.data as? CoffeeType
+        }
+    }
+    
+    // define animation functions
+    
     
     func setView() {
         // set cell style
@@ -46,12 +55,13 @@ class CoffeeTableViewControllerCell: UITableViewCell {
         // add to view
         countUpCoffeeView.addGestureRecognizer(countUpCoffeeTabRecognizer)
         countDownCoffeeView.addGestureRecognizer(countDownCoffeeTabRecognizer)
+        
     }
     
-    func setCoffeeType(coffeeType: CoffeeType) {
-        coffee = coffeeType
-        coffeeTypeNameLabel.text = coffeeType.name
-        coffeeCapsuleView.capsuleColor = HelperMethods.uicolorFromString(coffeeType.color)
+    func setModel(model: TableViewCellModel) {
+        self.model = model
+        coffeeTypeNameLabel.text = coffee!.name
+        coffeeCapsuleView.capsuleColor = HelperMethods.uicolorFromString(coffee!.color)
     }
     
     func setCoffeeCounterLabel(counter: String) {
@@ -60,13 +70,30 @@ class CoffeeTableViewControllerCell: UITableViewCell {
     
     func countUpCoffee() {
         if let _ = coffee {
-            dataManager.countUpCoffee(coffee: coffee!)
+            UIView.animate(withDuration: 0.1, delay: 0.0, options: UIViewAnimationOptions.allowAnimatedContent, animations: {
+                self.countUpCoffeeView.transform = CGAffineTransform(scaleX: 0.85, y: 0.85)
+            }, completion: { (success) in
+                UIView.animate(withDuration: 0.05, delay: 0.05, options: UIViewAnimationOptions.allowAnimatedContent, animations: {
+                    self.countUpCoffeeView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+                }, completion: { (success) in
+                    self.dataManager.countUpCoffee(coffee: self.coffee!)
+                })
+            })
         }
     }
     
     func countDownCoffee() {
         if let _ = coffee {
-            dataManager.countDownCoffee(coffee: coffee!)
+            UIView.animate(withDuration: 0.1, delay: 0.0, options: UIViewAnimationOptions.allowAnimatedContent, animations: {
+                self.countDownCoffeeView.transform = CGAffineTransform(scaleX: 0.85, y: 0.85)
+            }, completion: { (success) in
+                UIView.animate(withDuration: 0.05, delay: 0.05, options: UIViewAnimationOptions.allowAnimatedContent, animations: {
+                    self.countDownCoffeeView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+                }, completion: { (success) in
+                    self.dataManager.countDownCoffee(coffee: self.coffee!)
+                })
+            })
+
         }
     }
 }

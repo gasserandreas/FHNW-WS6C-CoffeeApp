@@ -33,7 +33,7 @@ class SelectUserTableViewController: UITableViewController, SelectUserTableViewC
         
         // new data
         // new data
-        notificationCenter.addObserver(forName: NSNotification.Name(rawValue: Consts.Notification.DataManagerNewUserData.rawValue), object: nil, queue: mainQueue, using: { _ in
+        notificationCenter.addObserver(forName: NSNotification.Name(rawValue: Consts.Notification.DataManagerNewUsersData.rawValue), object: nil, queue: mainQueue, using: { _ in
             self.tableView.reloadData()
         })
         

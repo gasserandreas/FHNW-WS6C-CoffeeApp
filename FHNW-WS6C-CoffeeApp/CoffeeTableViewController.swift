@@ -35,9 +35,27 @@ class CoffeeTableViewController: UITableViewController {
             self.tableView.reloadData()
         })
         
-        notificationCenter.addObserver(forName: NSNotification.Name(rawValue: Consts.Notification.DataManagerNewUserData.rawValue), object: nil, queue: mainQueue, using: { _ in
+        notificationCenter.addObserver(forName: NSNotification.Name(rawValue: Consts.Notification.DataManagerNewUsersData.rawValue), object: nil, queue: mainQueue, using: { _ in
             self.tableView.reloadData()
         })
+        
+        notificationCenter.addObserver(forName: NSNotification.Name(rawValue: Consts.Notification.DataManagerNewUserData.rawValue), object: nil, queue: mainQueue, using: { notification in
+            if let coffeeId = notification.userInfo?["coffeeId"] as? String {
+                self.updateTableViewCell(id: coffeeId)
+            }
+            
+        })
+    }
+    
+    private func updateTableViewCell(id: String) {
+        if let user = dataManager.selectedUser() {
+            if let index = user.coffees.index(where: { (item) -> Bool in
+                item.key == id
+            }) {
+                let indexPath: IndexPath = IndexPath(row: index, section: 0)
+                tableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.none)
+            }
+        }
     }
     
     // MARK: - Table View
@@ -67,7 +85,8 @@ class CoffeeTableViewController: UITableViewController {
         }
         
         // set table view
-        cell.setCoffeeType(coffeeType: coffeeType)
+        let model = TableViewCellModel(data: coffeeType, animate: false)
+        cell.setModel(model: model)
         cell.setCoffeeCounterLabel(counter: counter)
         cell.setView()
         

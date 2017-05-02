@@ -89,7 +89,7 @@ class DataManager: NSObject {
         }
         return nil
     }
-    
+        
     func setSelectedUser(user: User) {
         selectedUserId = user.id
     }
@@ -136,18 +136,21 @@ class DataManager: NSObject {
                     realm.add(user, update: true)
                 }
             }
-            notificationCenter.post(name: Notification.Name(rawValue: Consts.Notification.DataManagerNewUserData.rawValue), object: nil)
+            notificationCenter.post(name: Notification.Name(rawValue: Consts.Notification.DataManagerNewUsersData.rawValue), object: nil)
         } catch let error {
             fatalError(error.localizedDescription)
         }
     }
     
-    private func saveUser(user: User) {
+    private func saveUser(user: User, coffee: CoffeeType) {
         do {
             try realm.write {
                 realm.add(user, update: true)
             }
-            notificationCenter.post(name: Notification.Name(rawValue: Consts.Notification.DataManagerNewUserData.rawValue), object: nil)
+            //notificationCenter.post(name: Notification.Name(rawValue: Consts.Notification.DataManagerNewUserData.rawValue), object: nil)
+            print("saveUser")
+            let userInfoArr = ["userId": user.id, "coffeeId": coffee.id]
+            notificationCenter.post(name: Notification.Name(rawValue: Consts.Notification.DataManagerNewUserData.rawValue), object: nil, userInfo: userInfoArr)
         } catch let error {
             fatalError(error.localizedDescription)
         }

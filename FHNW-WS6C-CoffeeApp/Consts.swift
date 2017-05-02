@@ -25,6 +25,7 @@ struct Consts {
     enum Notification: String {
         case DataManagerNewCoffeeData = "DataManagerNewCoffeeDataNotification"
         case DataManagerNewUserData = "DataManagerNewUserDataNotification"
+        case DataManagerNewUsersData = "DataManagerNewUsersDataNotification"
     }
     /*
     enum FontName {
