@@ -18,8 +18,7 @@ extension UIApplication {
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
-
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
@@ -31,6 +30,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIApplication.shared.setStatusBarStyle(UIStatusBarStyle.default, animated: false)
         //UIApplication.shared.statusBarView.backgroundColor = HelperConsts.topBarBackgroundColor
         UIApplication.shared.statusBarView.tintColor = UIColor.Theme.DefaultColor
+        
+        let onBoarded = UserDefaults.standard.bool(forKey: Consts.UserDefaults.UserOnBoarded.rawValue)
+        
+        if !onBoarded {
+            window?.rootViewController = UIStoryboard(name: Consts.StoryBoard.OnBoarding.rawValue, bundle: nil).instantiateInitialViewController() as! UINavigationController
+        } else {
+            window?.rootViewController = UIStoryboard(name: Consts.StoryBoard.Main.rawValue, bundle: nil).instantiateInitialViewController() as! UINavigationController
+        }
+//        let onBoarded: Bool? = UserDefaults.standard.value(forKey: Consts.UserDefaults.UserOnBoarded.rawValue) as? Bool
+//        NSLog(String(describing: onBoarded))
+//        // check onBoarding
+//        if onBoarded != true {
+//            NSLog("not onBoarded")
+//            // show different view controller
+//            let mainStoryBoard = UIStoryboard(name: Consts.StoryBoard.Main.rawValue, bundle: nil)
+//            let viewController = mainStoryBoard.instantiateViewController(withIdentifier: Consts.ViewControllerIdentifier.OnBoardingViewController.rawValue) as! OnBoardingViewController
+//            NSLog(viewController.nibName!)
+//            UIApplication.shared.keyWindow?.rootViewController = viewController
+//            
+//            // set onBoarded true
+//            //UserDefaults.standard.set(true, forKey: Consts.UserDefaults.UserOnBoarded.rawValue)
+//        }
         
         return true
     }

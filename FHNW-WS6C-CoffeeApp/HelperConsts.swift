@@ -13,10 +13,10 @@ import QuartzCore
 struct HelperConsts {
     
     // testing flag
-    static let testing = true
+    static let testing = false
     
     static let testServerUrl = "http://localhost:3001/"
-    static let prodServerUrl = "http://localhost:3001/"
+    static let prodServerUrl = "http://fhnw-coffee-server.andreasgasser.com/"
     
     static let apiVersion = "V1/"
     static let apiBase = "api/"
