@@ -25,7 +25,7 @@ class SelectUserTableViewControllerCell: UITableViewCell {
     }()
     
     private var user: User?
-    var delegate: SelectUserTableViewController?
+    var delegate: SelectUserTableViewControllerCellDelegateMethods?
     
     func setView() {
         // set cell style
@@ -40,15 +40,6 @@ class SelectUserTableViewControllerCell: UITableViewCell {
         userProfileImageView.layer.shadowColor = UIColor.black.cgColor
         userProfileImageView.layer.shadowOpacity = 0.33
         userProfileImageView.layer.shadowRadius = 5
-        
-        /*
-        //userProfileShadowView.layer.cornerRadius = radius
-        userProfileShadowView.layer.masksToBounds = false
-        userProfileShadowView.layer.shadowOffset = CGSize.init(width: 0, height: 0)
-        userProfileShadowView.layer.shadowColor = UIColor.black.cgColor
-        userProfileShadowView.layer.shadowOpacity = 0.33
-        userProfileShadowView.layer.shadowRadius = 5
-         */
         
         userProfileImageView.borderColor = UIColor.Theme.ImageBorderColor
         

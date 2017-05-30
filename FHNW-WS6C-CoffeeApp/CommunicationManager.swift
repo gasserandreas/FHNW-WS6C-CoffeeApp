@@ -61,8 +61,10 @@ class CommunicationManager: NSObject {
     }
     
     func getUsers(completionHandler:@escaping ([User]) -> ()) {
+        NSLog(HelperMethods.getUserApiEndPointString())
         Alamofire.request(HelperMethods.getUserApiEndPointString())
             .responseArray{ (response: DataResponse<[User]>) in
+                NSLog("\(response)")
                 if let userResponse = response.result.value {
                     completionHandler(userResponse)
                 }

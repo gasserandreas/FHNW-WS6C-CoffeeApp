@@ -21,23 +21,24 @@ struct Consts {
         case ShowSummaryViewController = "showSummaryViewControllerSeque"
         case ShowSummaryTableViewController = "showSummaryTableViewControllerSeque"
         case UnwindToCoffeeViewController = "unwindToCoffeeViewControllerSeque"
+        case ShowOnBoardingSelectUserTableViewControllerSeque = "showOnBoardingSelectUserTableViewControllerSeque"
+        case ShowOnBoardingFinalizeViewControllerSeque = "showOnBoardingFinalizeViewControllerSeque"
+        case UnwindToOnBoardingSelectUserViewController = "unwindToOnBoardingSelectUserViewControllerSegue"
     }
     enum Notification: String {
         case DataManagerNewCoffeeData = "DataManagerNewCoffeeDataNotification"
         case DataManagerNewUserData = "DataManagerNewUserDataNotification"
         case DataManagerNewUsersData = "DataManagerNewUsersDataNotification"
     }
-    /*
-    enum FontName {
-        enum SFUIText: String {
-            case Light = "SFUIText-Light"
-            case Regular = "SFUIText-Regular"
-            case Medium = "SFUIText-Medium"
-            case Semibold = "SFUIText-Semibold"
-        }
-        enum Slabo: String {
-            case Regular = "SlaboRegular"
-        }
+    enum UserDefaults: String {
+        case UserId = "UserId"
+        case UserOnBoarded = "UserOnBoarded"
     }
-    */
+    enum ViewControllerIdentifier: String {
+        case OnBoardingViewController = "OnBoardingViewController"
+    }
+    enum StoryBoard: String {
+        case Main = "Main"
+        case OnBoarding = "OnBoarding"
+    }
 }

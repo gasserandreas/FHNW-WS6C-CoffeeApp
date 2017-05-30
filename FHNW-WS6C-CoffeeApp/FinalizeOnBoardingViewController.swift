@@ -1,16 +1,16 @@
 //
-//  DetailViewController.swift
+//  FinalizeOnBoardingViewController.swift
 //  FHNW-WS6C-CoffeeApp
 //
-//  Created by Andreas Gasser on 07.03.17.
+//  Created by Andreas Gasser on 02.05.17.
 //  Copyright © 2017 FHNW. All rights reserved.
 //
 
 import UIKit
 import Foundation
 
-class CoffeeViewController: UIViewController, UIViewControllerTransitioningDelegate {
-
+class FinalizeOnBoardingViewController: UIViewController {
+    
     lazy var dataManager: DataManager = {
         return DataManager.sharedInstance
     }()
@@ -21,6 +21,10 @@ class CoffeeViewController: UIViewController, UIViewControllerTransitioningDeleg
     
     @IBOutlet weak var backImageView: UIImageView!
     @IBOutlet weak var headingLabel: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var firstnameLabel: UILabel!
+    @IBOutlet weak var coffeeCounterLabel: UILabel!
+    @IBOutlet weak var finalizeLabel: UILabel!
     @IBOutlet weak var userProfileImageView: UIImageView!
     @IBOutlet weak var userProfileShadowView: UIView!
     
@@ -64,28 +68,37 @@ class CoffeeViewController: UIViewController, UIViewControllerTransitioningDeleg
         userProfileShadowView.layer.shadowColor = UIColor.black.cgColor
         userProfileShadowView.layer.shadowOpacity = 0.33
         userProfileShadowView.layer.shadowRadius = 5
-
+        
         
         // set label
         headingLabel.font = UIFont.Theme.HeaderTextFont
         headingLabel.textColor = UIColor.Theme.TextColor
+        nameLabel.font = UIFont.Theme.HeaderTextFont
+        nameLabel.textColor = UIColor.Theme.TextColor
+        firstnameLabel.font = UIFont.Theme.HeaderTextFont
+        firstnameLabel.textColor = UIColor.Theme.TextColor
+        finalizeLabel.font = UIFont.Theme.HeaderTextFont
+        finalizeLabel.textColor = UIColor.Theme.TextColor
+        
+        coffeeCounterLabel.font = UIFont.Theme.HeaderTextFont
+        coffeeCounterLabel.textColor = UIColor.Theme.TextColor
         
         customLoadView()
     }
     
     func customLoadView() {
-        // set name
         if let user = selectedUser {
             let url = URL(string: HelperMethods.getImageEndPointString(imageName: user.imageName))!
             userProfileImageView.af_setImage(withURL: url)
-        } else {
-            // push back to select user view
-            performSegueShowSelectUserViewController()
+            nameLabel.text = user.name
+            firstnameLabel.text = user.firstname
+            
+            var coffees = 0
+            for coffee in user.coffees {
+                coffees += Int(coffee.value)!
+            }
+            coffeeCounterLabel.text = coffees > 0 ? "\(coffees) Coffees" : "No coffees"
         }
-    }
-    
-    func performSegueShowSelectUserViewController() {
-        performSegue(withIdentifier: Consts.Seques.ShowSelectUserViewController.rawValue, sender: self)
     }
     
     // perform refresh of view
@@ -94,9 +107,12 @@ class CoffeeViewController: UIViewController, UIViewControllerTransitioningDeleg
         customLoadView()
     }
     
-    @IBAction func unwindToCoffeeViewController(segue: UIStoryboardSegue) {}
+    @IBAction func userDidSelectBackButton() {
+        performSegue(withIdentifier: Consts.Seques.UnwindToOnBoardingSelectUserViewController.rawValue, sender: self)
+    }
     
-    @IBAction func userDidSelectShowSelectUserViewController(sender: UIImageView) {
-        performSegueShowSelectUserViewController()
+    @IBAction func userDidSelectSave() {
+        UserDefaults.standard.set(true, forKey: Consts.UserDefaults.UserOnBoarded.rawValue)
+        UIApplication.shared.keyWindow?.rootViewController = UIStoryboard(name: Consts.StoryBoard.Main.rawValue, bundle: nil).instantiateInitialViewController() as! UINavigationController
     }
 }

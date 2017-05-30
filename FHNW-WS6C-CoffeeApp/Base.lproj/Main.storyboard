@@ -77,7 +77,7 @@
                                     <constraint firstItem="lmO-wf-vjO" firstAttribute="trailing" secondItem="Udj-fT-4RF" secondAttribute="trailing" id="w8z-Ch-zyI"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WHO ARE YOU?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PFR-Bs-5xt">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CHANGE PROFILE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PFR-Bs-5xt">
                                 <rect key="frame" x="57" y="130" width="260" height="26"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="260" id="ju3-aH-MrP"/>
@@ -122,7 +122,7 @@
                 <navigationController navigationBarHidden="YES" id="3Jn-Yj-ObH" sceneMemberID="viewController">
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="LCg-UN-mRj">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="LCg-UN-mRj">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -149,7 +149,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ADD COFFEE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6EV-pg-iXF">
-                                <rect key="frame" x="57" y="35" width="260" height="26"/>
+                                <rect key="frame" x="57.5" y="35" width="260" height="26"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="260" id="pms-xg-74S"/>
                                     <constraint firstAttribute="height" constant="26" id="vqA-4s-ZwU"/>
@@ -255,21 +255,21 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" restorationIdentifier="ImageViewRestorationId" translatesAutoresizingMaskIntoConstraints="NO" id="lKM-oY-7g3" userLabel="UserProfile Image Shadow">
-                                            <rect key="frame" x="138" y="10" width="100" height="100"/>
+                                            <rect key="frame" x="137.5" y="10" width="100" height="100"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="100" id="7Xh-Bs-XKv"/>
                                                 <constraint firstAttribute="width" constant="100" id="WHe-r0-JlV"/>
                                             </constraints>
                                         </view>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person-1" translatesAutoresizingMaskIntoConstraints="NO" id="fi8-rf-AH0" customClass="RoundedImageView" customModule="FHNW_WS6C_CoffeeApp" customModuleProvider="target">
-                                            <rect key="frame" x="138" y="9.5" width="100" height="100.5"/>
+                                            <rect key="frame" x="137.5" y="9.5" width="100" height="100.5"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="100" id="LzG-Ss-oxK"/>
                                                 <constraint firstAttribute="width" constant="100" id="UVz-UN-h8e"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Andreas Gasser" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j7E-md-t3P">
-                                            <rect key="frame" x="57" y="125" width="260" height="21"/>
+                                            <rect key="frame" x="57.5" y="125" width="260" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="Uan-22-UX5"/>
                                                 <constraint firstAttribute="width" constant="260" id="gcx-aY-fw0"/>
@@ -499,7 +499,7 @@
             <objects>
                 <tableViewController id="igo-TJ-RmC" customClass="SummaryTableViewController" customModule="FHNW_WS6C_CoffeeApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="FsR-ct-ZeE">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="376"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
