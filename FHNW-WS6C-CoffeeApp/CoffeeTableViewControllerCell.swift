@@ -14,8 +14,12 @@ class CoffeeTableViewControllerCell: UITableViewCell {
     @IBOutlet weak var coffeeTypeNameLabel: UILabel!
     @IBOutlet weak var coffeeCounterLabel: UILabel!
     @IBOutlet var coffeeCapsuleView: CoffeeCapsuleView!
-    @IBOutlet weak var countUpCoffeeView:UIView!
-    @IBOutlet weak var countDownCoffeeView:UIView!
+    
+    @IBOutlet weak var countUpCoffeeView: UIView!
+    @IBOutlet weak var countUpGestureRecognizerView: UIView!
+    
+    @IBOutlet weak var countDownCoffeeView: UIView!
+    @IBOutlet weak var countDownGestureRecognizerView: UIView!
     
     lazy var dataManager: DataManager = {
         return DataManager.sharedInstance
@@ -28,8 +32,6 @@ class CoffeeTableViewControllerCell: UITableViewCell {
             return model?.data as? CoffeeType
         }
     }
-    
-    // define animation functions
     
     
     func setView() {
@@ -53,8 +55,8 @@ class CoffeeTableViewControllerCell: UITableViewCell {
         countDownCoffeeTabRecognizer.cancelsTouchesInView = false
         
         // add to view
-        countUpCoffeeView.addGestureRecognizer(countUpCoffeeTabRecognizer)
-        countDownCoffeeView.addGestureRecognizer(countDownCoffeeTabRecognizer)
+        countUpGestureRecognizerView.addGestureRecognizer(countUpCoffeeTabRecognizer)
+        countDownGestureRecognizerView.addGestureRecognizer(countDownCoffeeTabRecognizer)
         
     }
     
