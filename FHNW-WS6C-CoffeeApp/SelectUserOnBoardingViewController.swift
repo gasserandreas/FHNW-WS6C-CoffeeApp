@@ -2,7 +2,7 @@
 //  SelectUserOnBoardingViewController.swift
 //  FHNW-WS6C-CoffeeApp
 //
-//  Created by Andreas Gasser on 02.05.17.
+//  Created by Martin Luepold on 02.05.17.
 //  Copyright © 2017 FHNW. All rights reserved.
 //
 

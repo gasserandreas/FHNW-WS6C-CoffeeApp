@@ -2,7 +2,7 @@
 //  SummaryTableViewControllerCell.swift
 //  FHNW-WS6C-CoffeeApp
 //
-//  Created by Andreas Gasser on 10.03.17.
+//  Created by Martin Luepold on 10.03.17.
 //  Copyright © 2017 FHNW. All rights reserved.
 //
 
